@@ -1,0 +1,3002 @@
+[
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.75,
+    "evidence_text": "Marina Beach is a 12km open promenade with statues, food stalls and evening crowds; a well-known youth hangout spot in Chennai.",
+    "justification": "Inferred from description: a free, open, informal outdoor promenade with snack stalls and evening leisure activity strongly attracts students and young people.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.65,
+    "evidence_text": "Marina Beach is the longest urban beach in India, with memorials and statues of Gandhi, Bose and Vivekananda drawing broad public visitation.",
+    "justification": "Inferred from description: a landmark public beach with historical memorials appeals to adults and families as well as students.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.95,
+    "evidence_text": "There is no entry fee for visiting Marina Beach. Marina Beach is open 24 hours a day, seven days a week.",
+    "justification": "Source states: the beach has no entry fee and is open 24/7, making it essentially a zero-cost, low-budget destination.",
+    "source_url": "https://myholidayhappiness.com/place/tamilnadu/chennai/marina-beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.3,
+    "evidence_text": "The beach has numerous roadside food and snack stalls (bhel puri, sundal, ice cream) along its length.",
+    "justification": "Inferred from description: while entry is free, visitors commonly spend modestly on street food and small stalls, giving it some medium-budget relevance.",
+    "source_url": "https://chennaitourism.travel/marina-beach-chennai"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium paid attractions or high-cost facilities are mentioned for the beach itself.",
+    "justification": "Inferred from description: an open public beach with no entry fee has essentially no high-budget spending pathway on-site.",
+    "source_url": "https://myholidayhappiness.com/place/tamilnadu/chennai/marina-beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.25,
+    "evidence_text": "Marina Beach is home to several memorials and statues that commemorate important figures in Indian history, including Gandhi, Bose, and Vivekananda.",
+    "justification": "Source states: the beach hosts historical memorials and statues, giving it a secondary but real history-interest angle.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.9,
+    "evidence_text": "Marina beach along the Bay of Bengal is the longest beach in India and the second longest in the world, spread over about 12 km of sandy coastline.",
+    "justification": "Source states: it is a long natural sandy coastline along the Bay of Bengal, making it a dominant nature/seaside attraction.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.1,
+    "evidence_text": "No temples or spiritual sites are described as part of the core beach attraction.",
+    "justification": "Inferred from description: the beach itself is a secular recreational/natural space with minimal spiritual significance.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.3,
+    "evidence_text": "Vendors along the promenade sell toys, balloons, snacks and beachside trinkets.",
+    "justification": "Inferred from description: informal vendor stalls along the promenade provide minor shopping/browsing appeal, not a shopping destination per se.",
+    "source_url": "https://chennaitourism.travel/marina-beach-chennai"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.85,
+    "evidence_text": "A 34-foot tall artificial waterfall was installed in 2005; the beach is a popular leisure destination with food stalls and evening activity.",
+    "justification": "Source states: added attractions like the artificial waterfall plus general leisure/food-stall activity make it a strong entertainment/recreation spot.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.4,
+    "evidence_text": "The beach is a large open public promenade accessible to any individual visitor at any hour.",
+    "justification": "Inferred from description: as a free, always-open public space, solo visits (e.g., morning walks) are plausible though less emphasized than group visits.",
+    "source_url": "https://myholidayhappiness.com/place/tamilnadu/chennai/marina-beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.85,
+    "evidence_text": "The beach is a popular evening hangout with food stalls, games and leisure activity typically enjoyed in groups.",
+    "justification": "Inferred from description: evening leisure culture with snacks and games is characteristic of group/friends outings in Chennai.",
+    "source_url": "https://chennaitourism.travel/marina-beach-chennai"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.85,
+    "evidence_text": "Memorials, open sandy stretches and food stalls make the beach a common destination for family outings.",
+    "justification": "Inferred from description: a safe, free, expansive public space with memorials and food stalls is a classic family outing venue.",
+    "source_url": "https://chennaitourism.travel/marina-beach-chennai"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.55,
+    "evidence_text": "Marina Beach is a fully open-air, unshaded coastal promenade with no covered attractions.",
+    "justification": "Inferred from description: as an open beach, clear weather is generally preferred for comfortable visits, though early morning/evening sun is often mild in Chennai.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.2,
+    "evidence_text": "The beach is fully outdoor with no shelter from rain; heavy surf and lifeguard warnings are common during monsoon.",
+    "justification": "Inferred from description: an unshaded open beach is poorly suited to rain, with safety concerns during monsoon swells.",
+    "source_url": "https://en.wikipedia.org/wiki/Marina_Beach"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.65,
+    "evidence_text": "The fort museum houses colonial-era artifacts including weapons, coins, medals, uniforms and paintings related to British administration in India.",
+    "justification": "Inferred from description: a colonial history museum is a common school/college educational excursion site.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.75,
+    "evidence_text": "The site includes the fort, St. Mary's Church, and a museum of colonial administration artifacts, appealing to history-focused visitors.",
+    "justification": "Inferred from description: detailed colonial/administrative history content tends to appeal more deeply to adult visitors with sustained interest in history.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.85,
+    "evidence_text": "The entry fee to visit Fort St. George is INR 20 per person for Indians and INR 250 per person for foreigners.",
+    "justification": "Source states: the domestic entry fee is a nominal INR 20, placing it firmly in the low-budget category for local/domestic tourists.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.3,
+    "evidence_text": "Foreign visitors pay INR 250, and additional camera/guide fees may apply at heritage sites of this type.",
+    "justification": "Inferred from description: for foreign tourists or visitors adding a guide, the cost profile shifts toward medium.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium or high-cost experiences are described at the fort or museum.",
+    "justification": "Inferred from description: a government-run heritage museum with low fixed pricing has essentially no high-budget component.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.95,
+    "evidence_text": "Fort St. George is a 17th-century British colonial fort housing a museum of colonial-era artifacts, weapons, coins, medals, uniforms and paintings.",
+    "justification": "Source states: the site is explicitly a colonial-era fort and history museum, making History its dominant interest category.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.1,
+    "evidence_text": "The site is a built fort and administrative complex, not a natural landscape attraction.",
+    "justification": "Inferred from description: as a constructed fort/museum complex, nature-related interest is minimal.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.15,
+    "evidence_text": "The fort complex includes St. Mary's Church, one of the oldest Anglican churches in Asia.",
+    "justification": "Inferred from description: the presence of a historic church inside the fort gives a minor spiritual/religious-heritage dimension.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "No shopping facilities are mentioned within the fort or museum complex.",
+    "justification": "Inferred from description: a heritage museum site offers essentially no shopping activity.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.2,
+    "evidence_text": "The site functions primarily as a museum and historic monument rather than a leisure/entertainment venue.",
+    "justification": "Inferred from description: educational museum visits provide limited entertainment value compared to dedicated leisure attractions.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.6,
+    "evidence_text": "The museum is a self-paced walkthrough of colonial artifacts and fort grounds suited to independent exploration.",
+    "justification": "Inferred from description: museum-style browsing at one's own pace is well suited to solo visitors.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.5,
+    "evidence_text": "The fort and museum are open daily 9 AM to 5 PM (except Friday), a manageable stop for small groups touring the city.",
+    "justification": "Inferred from description: a moderate-duration heritage site fits into a group city-tour itinerary reasonably well.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.6,
+    "evidence_text": "The complex includes fort grounds, a church and a museum, offering varied content for different family members.",
+    "justification": "Inferred from description: the mix of outdoor grounds and indoor museum galleries suits family visits with varied interests.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.5,
+    "evidence_text": "The fort grounds and ramparts are outdoors, best explored in clear weather.",
+    "justification": "Inferred from description: viewing the outdoor fort architecture and grounds is more pleasant in sunny conditions.",
+    "source_url": "https://www.holidify.com/places/chennai/fort-st-george-sightseeing-121139.html"
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.7,
+    "evidence_text": "The museum houses artifacts, coins, medals, uniforms and paintings indoors, open 9 AM to 5 PM daily except Friday.",
+    "justification": "Inferred from description: the core museum galleries are indoor and covered, making the site a viable rainy-day option.",
+    "source_url": "https://chennaitourism.travel/fort-st-george-museum-chennai"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.45,
+    "evidence_text": "The temple dates to the 7th century CE and was rebuilt in the 16th century by Vijayanagara rulers; it is a major active Shiva temple in Mylapore.",
+    "justification": "Inferred from description: while students visit for cultural/heritage reasons, active temple worship skews toward older devotees.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.85,
+    "evidence_text": "The temple is open 5:30 AM-12:30 PM and 4:00 PM-9:30 PM, with a strict traditional dress code for devotees.",
+    "justification": "Inferred from description: structured worship hours and traditional dress norms indicate a primarily adult devotee base.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.95,
+    "evidence_text": "There are no entry fees to be paid to visit the temple.",
+    "justification": "Source states: the temple has no entry fee, making it a low-budget destination.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.25,
+    "evidence_text": "Nearby Mylapore market streets sell flowers, silk sarees and religious items, and special darshan/pooja tickets exist at some Chennai temples.",
+    "justification": "Inferred from description: optional special poojas and nearby market shopping can raise typical spend to a medium level for some visitors.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium high-cost services are described for the temple itself.",
+    "justification": "Inferred from description: a free-entry traditional temple has minimal pathway to high spending.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.45,
+    "evidence_text": "The temple dates back to the 7th century CE during the Pallava era, with the present structure rebuilt in the 16th century by Vijayanagara rulers.",
+    "justification": "Source states: the temple has a documented centuries-long architectural and dynastic history, giving it meaningful history interest.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.05,
+    "evidence_text": "The temple is an urban Dravidian-style stone temple complex in central Mylapore.",
+    "justification": "Inferred from description: as a dense urban temple complex, it has essentially no nature-tourism relevance.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.95,
+    "evidence_text": "According to mythology, Goddess Parvati performed penance as a peahen to seek Lord Shiva's blessings here; it remains an active major Shiva temple with daily rituals.",
+    "justification": "Source states: the temple's mythological origin and active worship rituals make Spiritual its dominant interest category.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.35,
+    "evidence_text": "The temple sits amid Mylapore's traditional market streets known for flowers, silk sarees, and religious items.",
+    "justification": "Inferred from description: the surrounding Mylapore market area gives visitors a moderate shopping opportunity adjacent to the temple visit.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.15,
+    "evidence_text": "The temple hosts an annual festival (Panguni Peruvizha) with processions, drawing crowds for cultural events.",
+    "justification": "Inferred from description: occasional festival processions provide minor entertainment/cultural-event value beyond routine worship.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.5,
+    "evidence_text": "Individual devotees commonly visit for personal darshan during the temple's morning and evening hours.",
+    "justification": "Inferred from description: personal worship/darshan is frequently an individual, solo activity.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.3,
+    "evidence_text": "The temple's strict dress code and worship-focused atmosphere are less oriented toward casual group outings.",
+    "justification": "Inferred from description: a devotional site with formal dress norms is less typical for casual friends outings than for family or solo worship.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.85,
+    "evidence_text": "Families commonly visit together for darshan, especially during festivals and on auspicious days.",
+    "justification": "Inferred from description: a major active family deity temple with dress-code norms strongly suits multigenerational family visits.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/kapiliswarar-temple"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.4,
+    "evidence_text": "The temple has an open central courtyard (tank/tirukulam) alongside covered mandapams and sanctum halls.",
+    "justification": "Inferred from description: the partly open courtyard is more comfortable to traverse barefoot in dry, sunny weather.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.6,
+    "evidence_text": "The temple's sanctum, corridors and mandapams are covered stone halls where worship continues regardless of weather.",
+    "justification": "Inferred from description: the covered prayer halls and sanctum allow normal temple visits even during rain.",
+    "source_url": "https://www.templewalks.com/lord-shiva-temples/kapaleeshwarar-temple-mylapore-chennai-timings-history/"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.45,
+    "evidence_text": "There is a museum inside the church that displays souvenirs of St. Thomas and his legend, of interest to history/heritage students.",
+    "justification": "Inferred from description: the on-site museum with apostolic history offers some educational appeal to student visitors.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.8,
+    "evidence_text": "Mass timings are held multiple times daily, including detailed Sunday schedules, indicating a regular adult congregation.",
+    "justification": "Inferred from description: a functioning cathedral with structured daily mass schedules is used mainly by adult worshippers.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.95,
+    "evidence_text": "There is no entry fee for visiting the San Thome Basilica Church. However, donations are welcome.",
+    "justification": "Source states: entry is free with only optional donations, making it a low-budget destination.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.15,
+    "evidence_text": "A small museum inside displays relics and souvenirs of St. Thomas, and religious souvenir shops operate nearby.",
+    "justification": "Inferred from description: optional souvenir purchases and donations may push some visitor spend to a modest medium level.",
+    "source_url": "https://chennaitourism.travel/san-thome-basilica-church-chennai"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No high-cost paid experiences are described at the basilica.",
+    "justification": "Inferred from description: a free-entry church with only donations has essentially no high-budget spending pathway.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.6,
+    "evidence_text": "San Thome Basilica was originally built in 1504, rebuilt in 1890 as a 180 ft basilica, and elevated to a minor basilica in 1956; it is linked to the burial of St. Thomas the Apostle who arrived in India around 52 AD.",
+    "justification": "Source states: the basilica has a documented history spanning from 1504 rebuilding to 1956 elevation, tied to the apostolic legend of St. Thomas.",
+    "source_url": "https://audiala.com/en/india/chennai/san-thome-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.1,
+    "evidence_text": "The basilica is located near Santhome beach but is itself a built cathedral structure.",
+    "justification": "Inferred from description: proximity to the coast gives a minor nature-adjacent element, though the site itself is architectural/religious.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.9,
+    "evidence_text": "The basilica houses the tomb of St. Thomas the Apostle and holds daily and Sunday mass services multiple times a day.",
+    "justification": "Source states: it is an active pilgrimage cathedral built over the apostle's tomb with a full daily mass schedule, making Spiritual its dominant interest.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.1,
+    "evidence_text": "Small religious souvenir stalls are present near the basilica entrance.",
+    "justification": "Inferred from description: minor souvenir stalls exist but shopping is not a primary draw of the site.",
+    "source_url": "https://chennaitourism.travel/san-thome-basilica-church-chennai"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.1,
+    "evidence_text": "The site is primarily a place of worship and pilgrimage rather than a leisure attraction.",
+    "justification": "Inferred from description: as an active cathedral, entertainment value is low compared to spiritual and historical value.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.55,
+    "evidence_text": "The basilica is open from 5 AM to 8 PM daily, allowing individual visits for prayer or reflection at flexible times.",
+    "justification": "Inferred from description: long daily open hours accommodate individual solo prayer visits well.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.3,
+    "evidence_text": "The basilica functions primarily as an active place of Christian worship with structured mass timings.",
+    "justification": "Inferred from description: a devotional cathedral setting is less typical for casual friends-group outings.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.8,
+    "evidence_text": "Sunday mass is held seven times, indicating strong family/congregation attendance patterns typical of Sunday worship.",
+    "justification": "Inferred from description: frequent Sunday mass schedules point to family-based congregational attendance.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.35,
+    "evidence_text": "The basilica is a 180 ft neo-Gothic structure near the coast, with an exterior best appreciated in clear weather.",
+    "justification": "Inferred from description: viewing the exterior architecture near the beach is more pleasant on clear days.",
+    "source_url": "https://audiala.com/en/india/chennai/san-thome-basilica"
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.75,
+    "evidence_text": "The basilica interior, including the tomb chapel and museum, is fully covered and open 5 AM to 8 PM regardless of outside conditions.",
+    "justification": "Inferred from description: as an enclosed cathedral with an indoor museum, it remains fully usable during rain.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.85,
+    "evidence_text": "The entry fee for Indians is INR 15, and the museum spans six buildings and 40+ galleries including a children's museum.",
+    "justification": "Source states: the very low domestic entry fee and presence of a dedicated children's museum make it a strong fit for school/student excursions.",
+    "source_url": "https://www.agatetravel.com/government-museum-chennai-india.html"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.7,
+    "evidence_text": "The museum has the richest collection of bronze idols (500 dating to 1000 BC) in Asia and the largest collection of Roman antiquities outside Europe.",
+    "justification": "Inferred from description: world-class archaeological and numismatic collections appeal strongly to adult history/art enthusiasts.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.9,
+    "evidence_text": "The entry fee for Indians is INR 15 and for foreigners INR 250.",
+    "justification": "Source states: the domestic ticket price of INR 15 is very low, placing it firmly in the low-budget category.",
+    "source_url": "https://www.agatetravel.com/government-museum-chennai-india.html"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.25,
+    "evidence_text": "Separate tickets/galleries (National Art Gallery, children's museum) and the foreigner rate of INR 250 add incremental cost.",
+    "justification": "Inferred from description: visiting multiple galleries or paying the foreigner rate nudges spend toward medium.",
+    "source_url": "https://www.agatetravel.com/government-museum-chennai-india.html"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium or high-cost experiences are described at the museum complex.",
+    "justification": "Inferred from description: a government-run museum with a nominal ticket price has minimal high-budget relevance.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.9,
+    "evidence_text": "The museum features an extensive collection of South Indian archaeology, ancient bronzes, stone sculptures, coins, and historical artefacts across six buildings and 40+ galleries.",
+    "justification": "Source states: the museum's core collections are archaeological and historical, making History its dominant interest category.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.1,
+    "evidence_text": "The museum complex includes a zoological/natural history section alongside its archaeology galleries.",
+    "justification": "Inferred from description: a minor natural-history gallery exists but the museum is not primarily a nature attraction.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.15,
+    "evidence_text": "The museum's bronze gallery includes many Hindu temple bronze idols dating back to 1000 BC.",
+    "justification": "Inferred from description: the large bronze idol collection has religious/iconographic content, giving a minor spiritual-interest dimension.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "No shopping facilities are described within the museum complex.",
+    "justification": "Inferred from description: as an educational museum complex, shopping relevance is minimal.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.3,
+    "evidence_text": "Besides the museum galleries, the complex includes the National Art Gallery and a children's museum.",
+    "justification": "Source states: the presence of an art gallery and children's museum adds some leisure/entertainment value beyond pure history browsing.",
+    "source_url": "https://www.agatetravel.com/government-museum-chennai-india.html"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.6,
+    "evidence_text": "The museum's 40+ galleries across six buildings allow for extended independent, self-paced exploration.",
+    "justification": "Inferred from description: a large multi-gallery museum is well suited to independent, self-directed solo exploration.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.5,
+    "evidence_text": "The complex's varied galleries, including art and antiquities, provide content for a group museum tour.",
+    "justification": "Inferred from description: diverse gallery content supports a moderate-length group visit among friends.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.7,
+    "evidence_text": "The complex includes a dedicated children's museum alongside the main archaeology and art galleries.",
+    "justification": "Source states: the presence of a children's museum within the complex specifically caters to family visits with kids.",
+    "source_url": "https://www.agatetravel.com/government-museum-chennai-india.html"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.25,
+    "evidence_text": "The museum complex is spread across six separate indoor buildings connected by outdoor walkways.",
+    "justification": "Inferred from description: moving between buildings involves some outdoor walking, mildly favoring dry weather, though this is secondary to indoor viewing.",
+    "source_url": "https://www.agatetravel.com/government-museum-chennai-india.html"
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.85,
+    "evidence_text": "The museum's galleries, housing bronzes, sculptures, coins and Roman antiquities, are indoor exhibition halls.",
+    "justification": "Inferred from description: as a fully indoor exhibition museum, it is one of the best rainy-day options among the five sites.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.6,
+    "evidence_text": "Ranked as the eighth smallest National Park in India, located inside the city, popular for school nature-study trips and low-cost outings.",
+    "justification": "Inferred from description: a low-cost, walkable urban national park is a common school/college nature-study excursion, but it is a general nature attraction not specifically student-targeted.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.8,
+    "evidence_text": "Open 9am-6pm all week except Tuesday; popular family/nature walking destination inside Chennai city.",
+    "justification": "Inferred from description: adults (including families and nature enthusiasts) form the broader visitor base for a city national park with jogging/walking trails.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.9,
+    "evidence_text": "Individual entry: Adult - INR 15, Government school children - INR 2, Private school children - INR 10.",
+    "justification": "Source states: entry fee is INR 15 for adults and as low as INR 2-10 for children, placing this firmly in the low-budget category.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.2,
+    "evidence_text": "Additional charges apply for still camera (INR 10), video camera (INR 75), and documentary filming (INR 2000).",
+    "justification": "Source states: optional camera/video fees exist that could push total spend to a medium level for visitors bringing equipment, but base visit remains cheap.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium/high-cost experiences (like paid safaris) are mentioned for the park beyond nominal entry and parking fees.",
+    "justification": "Inferred from description: nothing in the fee structure (entry, camera, parking) suggests a high-budget experience.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.15,
+    "evidence_text": "The park is a protected nature area within Chennai; historical content is minimal aside from its origin as former Raj Bhavan estate land.",
+    "justification": "Inferred from description: primarily a nature/wildlife destination, with only incidental historical background about its origins.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 1.0,
+    "evidence_text": "Guindy National Park is the only national park located inside a city, spread over 2.7 sq km, home to blackbuck, spotted deer and a snake park.",
+    "justification": "Source states: it is a protected national park area with wildlife such as blackbuck and deer, making Nature the dominant interest.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.05,
+    "evidence_text": "No temples or spiritual sites are associated with the park itself.",
+    "justification": "Inferred from description: the park has no religious or spiritual significance noted in sources.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "No shopping facilities mentioned; it is a nature reserve with walking trails.",
+    "justification": "Inferred from description: a national park has no retail/shopping element.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.3,
+    "evidence_text": "The park complex includes a Snake Park and Children's Park as additional attractions.",
+    "justification": "Source states: attached Snake Park and other sub-attractions add a mild recreational/entertainment element beyond pure nature viewing.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.4,
+    "evidence_text": "Popular with joggers, walkers and nature/bird photographers who often visit alone.",
+    "justification": "Inferred from description: nature parks attract solo joggers and photography enthusiasts, though it is not primarily a solo destination.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.65,
+    "evidence_text": "Walking trails and open green spaces suit group outings among friends.",
+    "justification": "Inferred from description: the park's trails and picnic-style open space are suitable for casual friend group outings.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.9,
+    "evidence_text": "Low children's ticket rates and the attached Children's Park indicate strong family orientation.",
+    "justification": "Source states: discounted rates for government/private school children and a dedicated Children's Park support family visits.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.9,
+    "evidence_text": "Fully outdoor national park with walking trails and open wildlife viewing areas, open 9am-6pm.",
+    "justification": "Inferred from description: as an entirely outdoor park, clear/sunny (dry) weather is best for walking trails and wildlife spotting.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.15,
+    "evidence_text": "No indoor shelter facilities are highlighted; trails would become muddy and less accessible in rain.",
+    "justification": "Inferred from description: an outdoor nature park is poorly suited to rainy weather since trails and viewing areas are unsheltered.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/guindy-national-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.85,
+    "evidence_text": "One of India's largest zoological parks spanning over 1,300 acres, a very common school excursion destination.",
+    "justification": "Inferred from description: large zoos are classic school field-trip destinations for students studying biology/wildlife.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.75,
+    "evidence_text": "Entry fees are ₹200 for adults and ₹50 for children aged 5-12; open 9am-6pm all days except Tuesday.",
+    "justification": "Source states: separate adult ticket pricing (₹200) confirms adults are a core, distinctly priced visitor segment.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.3,
+    "evidence_text": "Admission is free for children under 5 and for individuals with disabilities.",
+    "justification": "Source states: free entry categories exist for very young children/disabled visitors, giving some low-budget access, though standard pricing is higher.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.8,
+    "evidence_text": "Entry fees are ₹200 for adults and ₹50 for children aged 5-12 years.",
+    "justification": "Source states: the ₹200 adult ticket price is notably higher than most Chennai park attractions (e.g. ₹15 at Guindy), placing it at a medium budget level.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.2,
+    "evidence_text": "Large 1,300-acre park may involve additional costs for battery/safari vehicle rides and food for a full-day visit.",
+    "justification": "Inferred from description: a full-day visit to a very large zoo with optional rides and food could add up, though base entry is not high-budget.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.1,
+    "evidence_text": "The park is primarily a modern zoological/wildlife conservation facility, not a historical site.",
+    "justification": "Inferred from description: as a zoological park focused on wildlife, historical interest is minimal.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.95,
+    "evidence_text": "One of India's largest and most renowned zoological parks, spanning over 1,300 acres, housing diverse wildlife.",
+    "justification": "Source states: it is described as one of India's largest zoological parks with extensive wildlife collections, making Nature the dominant interest.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.05,
+    "evidence_text": "No religious or spiritual sites are associated with the zoo.",
+    "justification": "Inferred from description: a zoological park has no spiritual dimension.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.1,
+    "evidence_text": "Typical zoo souvenir/snack stalls may exist but are not a highlighted feature.",
+    "justification": "Inferred from description: large tourist parks often have minor souvenir stalls, but shopping is not a core draw.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.75,
+    "evidence_text": "Large zoo with safari-style enclosures and animal viewing spread across a vast area, popular recreational outing.",
+    "justification": "Inferred from description: zoos function as major family recreational/entertainment destinations alongside their nature/education value.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.3,
+    "evidence_text": "A very large 1,300-acre park requiring significant walking/transit, less common for solo leisure visits compared to group visits.",
+    "justification": "Inferred from description: large zoos are typically visited in groups or families rather than solo, though solo wildlife enthusiasts do visit.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.7,
+    "evidence_text": "Spread over 1,300 acres with lots to explore, a common outing spot for groups of friends and students.",
+    "justification": "Inferred from description: the large scale and variety of exhibits make it a popular full-day outing for groups of friends.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 1.0,
+    "evidence_text": "Separate children's ticket pricing (₹50 for ages 5-12) and free entry for under-5s reflect strong family visitor focus.",
+    "justification": "Source states: tiered child pricing and free admission for very young children indicate the zoo is designed as a top family destination.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.9,
+    "evidence_text": "A sprawling 1,300-acre outdoor zoological park with open-air enclosures, open 9am-6pm.",
+    "justification": "Inferred from description: as a mostly outdoor safari-style zoo, sunny/dry weather is best for walking and animal viewing.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.15,
+    "evidence_text": "No mention of indoor/covered viewing areas across the vast outdoor enclosures.",
+    "justification": "Inferred from description: the outdoor, spread-out nature of the zoo makes it poorly suited to rainy conditions.",
+    "source_url": "https://www.thrillophilia.com/attractions/arignar-anna-zoological-park"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.55,
+    "evidence_text": "The chariot monument depicts all 1,330 verses of the Thirukkural in bas-relief, of educational/literary interest.",
+    "justification": "Inferred from description: the Thirukkural literary content offers educational value for students of Tamil literature, though it is more commonly an adult/tourist site.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.8,
+    "evidence_text": "A memorial dedicated to Tamil poet-philosopher Thiruvalluvar, conceived by CM M. Karunanidhi and inaugurated in 1976.",
+    "justification": "Inferred from description: as a cultural/historical monument tied to Tamil identity and literature, it draws a predominantly adult visitor base.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 1.0,
+    "evidence_text": "Entry fee is Rs. 10 for Adults and Rs. 5 for Children (some sources report as low as Rs. 3/2).",
+    "justification": "Source states: entry fee is around Rs. 10 for adults, one of the lowest-cost attractions researched.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.1,
+    "evidence_text": "No additional paid experiences beyond basic monument/auditorium entry are mentioned.",
+    "justification": "Inferred from description: with such a low base entry fee and no add-on paid attractions, a medium-spend visit is unlikely.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No high-cost features (rides, safaris, shows) are associated with the monument.",
+    "justification": "Inferred from description: nothing in the site's offerings suggests high spending.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.85,
+    "evidence_text": "Memorial to Thiruvalluvar built in 1976, designed by V. Ganapati Sthapati, with a 39m stone chariot inspired by the Thiruvarur temple chariot.",
+    "justification": "Source states: the monument's construction history, architecture and commemorative purpose make History a dominant interest category.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.1,
+    "evidence_text": "No natural/wildlife features are part of the monument, mainly a stone structure and gardens.",
+    "justification": "Inferred from description: as an architectural monument, Nature interest is minimal beyond incidental landscaped grounds.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.55,
+    "evidence_text": "Thiruvalluvar is revered as a saint-poet in Tamil culture; the chariot form echoes temple chariot architecture.",
+    "justification": "Inferred from description: the monument's temple-chariot design and reverence for Thiruvalluvar as a sage figure gives it a moderate spiritual/cultural dimension.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "No shopping facilities are mentioned at the site.",
+    "justification": "Inferred from description: a commemorative monument has no shopping element.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.2,
+    "evidence_text": "Houses a large auditorium accommodating about 4000 people, used for cultural events/performances.",
+    "justification": "Source states: the large auditorium hosts cultural programs, giving a modest entertainment dimension alongside its primary historical/commemorative purpose.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.65,
+    "evidence_text": "A compact monument site well suited to a quiet, self-paced visit to view the chariot and bas-reliefs.",
+    "justification": "Inferred from description: monument/heritage sites of this scale are commonly visited solo by tourists and history enthusiasts.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.5,
+    "evidence_text": "A well-known Chennai landmark often included in short city sightseeing itineraries.",
+    "justification": "Inferred from description: as a quick city landmark stop, it fits into group friend itineraries but is not a primary group hangout spot.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.6,
+    "evidence_text": "Low children's ticket price (Rs. 5) suggests families with children are a catered-to segment.",
+    "justification": "Source states: discounted child entry fee indicates families are an expected visitor type, though the site is smaller in scope than a park or zoo.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.5,
+    "evidence_text": "The chariot monument and grounds are outdoors, while the auditorium is fully enclosed.",
+    "justification": "Inferred from description: viewing the outdoor stone chariot is more pleasant in dry/sunny weather, though much of the site (auditorium) is indoors.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.6,
+    "evidence_text": "The auditorium is a large enclosed structure built without interior columns, accommodating about 4000 people indoors.",
+    "justification": "Source states: the large enclosed auditorium provides indoor shelter, making a rainy-day visit still largely viable.",
+    "source_url": "https://www.tripoto.com/chennai/places-to-visit/valluvar-kottam"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 1.0,
+    "evidence_text": "Package tickets priced at ₹100 for adults and ₹50 for kids include exhibits, 3D shows and Science Park; separate concessional pricing exists for kids below 12.",
+    "justification": "Source states: discounted kids/science-centre pricing and the science-education focus (exhibits, 3D shows, Science Park) make this a strongly student-oriented attraction.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.6,
+    "evidence_text": "English shows at 10:45am, 1:15pm, 3:45pm and Tamil shows at 12pm, 2:30pm, 4:30pm draw general adult tourists too.",
+    "justification": "Inferred from description: while heavily student-oriented, the planetarium also attracts general adult tourists and families for its shows.",
+    "source_url": "https://www.thedilli.in/2023/10/birla-planetarium-chennai.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.5,
+    "evidence_text": "Individual entry: Science Centre - Adults INR 30, Kids INR 15; Shows - Adults INR 20, Kids INR 10.",
+    "justification": "Source states: individual component tickets (INR 15-30) are quite cheap, supporting a low-budget option for a partial visit.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.7,
+    "evidence_text": "Package tickets priced at ₹100 for adults and ₹50 for kids covering exhibits, 3D shows and Science Park.",
+    "justification": "Source states: the full combo package (~₹100) is a moderate, medium-budget spend for a complete visit experience.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.1,
+    "evidence_text": "No premium-tier ticketing beyond the standard package (~₹100) is mentioned.",
+    "justification": "Inferred from description: pricing structure tops out at a modest combo package, so high-budget spend is unlikely.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.1,
+    "evidence_text": "Facility is focused on astronomy/science education rather than historical subject matter.",
+    "justification": "Inferred from description: a planetarium's content is scientific/astronomical, with minimal historical focus.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.25,
+    "evidence_text": "Includes a 'Science Park' component alongside the indoor sky-show dome and exhibits.",
+    "justification": "Source states: the attached Science Park adds a light outdoor/nature-adjacent element, though the core offering is indoor science content.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.05,
+    "evidence_text": "No religious or spiritual content is associated with the planetarium.",
+    "justification": "Inferred from description: a science/astronomy center has no spiritual dimension.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "No shopping facilities are highlighted for the planetarium.",
+    "justification": "Inferred from description: a science education facility has no shopping element.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.85,
+    "evidence_text": "Offers 3D shows, sky shows in English and Tamil at scheduled times, plus exhibits and a Science Park.",
+    "justification": "Source states: multiple daily 3D/sky shows in two languages plus exhibits make Entertainment (edutainment) the dominant interest.",
+    "source_url": "https://www.thedilli.in/2023/10/birla-planetarium-chennai.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.4,
+    "evidence_text": "Fixed showtimes for individual ticket entry allow easy solo attendance at a single show.",
+    "justification": "Inferred from description: scheduled individual show tickets make solo attendance easy, though it is more commonly a group/family activity.",
+    "source_url": "https://www.thedilli.in/2023/10/birla-planetarium-chennai.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.6,
+    "evidence_text": "3D shows and Science Park exhibits make for an engaging shared experience among peer groups.",
+    "justification": "Inferred from description: the combination of shows and interactive science exhibits suits outings with friends.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.9,
+    "evidence_text": "Kids' concessional pricing (₹10-50) across Science Centre, Shows and package tickets shows strong family/child focus.",
+    "justification": "Source states: distinct, discounted kids' pricing across every ticket category indicates the venue is designed for family visits with children.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.3,
+    "evidence_text": "The Science Park component is likely partly outdoors, but the core dome/exhibit experience is indoors.",
+    "justification": "Inferred from description: since the main attraction (dome shows, exhibits) is indoors, sunny weather is not particularly important, only mildly relevant for the Science Park.",
+    "source_url": "https://www.holidify.com/places/chennai/birla-planetarium-chennai-sightseeing-1255014.html"
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.9,
+    "evidence_text": "Sky-show dome, science centre and exhibits are held indoors on a fixed daily schedule (10am-5:45pm).",
+    "justification": "Inferred from description: the planetarium's dome shows and exhibits are indoor activities, making it an ideal rainy-day destination unaffected by weather.",
+    "source_url": "https://www.thedilli.in/2023/10/birla-planetarium-chennai.html"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.5,
+    "evidence_text": "A botanical garden on Cathedral Road hosting flower shows and diverse plant collections.",
+    "justification": "Inferred from description: botanical gardens have moderate appeal to students for nature study, but are more broadly a general-audience attraction.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.8,
+    "evidence_text": "Entry fee of ₹15 collected from all people above 10 years of age or 130cm height; open 10am-8pm except Tuesdays.",
+    "justification": "Source states: the age/height-based entry threshold (above 10 years) implies the site is designed primarily for older children and adults.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.85,
+    "evidence_text": "An entry fee of ₹15 is collected from all people above 10 years of age or 130 cm height, per Wikipedia.",
+    "justification": "Source states: the standard entry fee is ₹15 per Wikipedia, clearly a low-budget attraction.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.35,
+    "evidence_text": "Another source cites entry fee for adults as Rs. 75 and for children below 10 years as Rs. 40; monthly walker pass is ₹150.",
+    "justification": "Source states: some sources report a higher ₹75 adult fee and a ₹150 monthly pass, suggesting a medium-budget experience is plausible depending on ticket type.",
+    "source_url": "https://ticketprice.in/ticket/semmozhi-poonga/"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.1,
+    "evidence_text": "No high-cost premium experiences are associated with the garden beyond entry and monthly passes.",
+    "justification": "Inferred from description: fee structure remains modest across all reported figures, so high-budget spend is unlikely.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.1,
+    "evidence_text": "The garden is a modern botanical park (opened 2010s) rather than a historical site.",
+    "justification": "Inferred from description: as a relatively modern botanical garden, historical interest is minimal.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 1.0,
+    "evidence_text": "Chennai's biggest flower show is held at Semmozhi Poonga; it is a botanical garden with diverse plant/flower collections.",
+    "justification": "Source states: it hosts Chennai's biggest flower show and functions as a botanical garden, making Nature the dominant interest.",
+    "source_url": "https://www.onmanorama.com/travel/outside-kerala/2025/01/03/chennai-flower-show-entry-fee-timing.html"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.15,
+    "evidence_text": "No religious sites are part of the botanical garden, though peaceful green spaces can have calming/meditative appeal.",
+    "justification": "Inferred from description: a tranquil garden setting offers mild meditative/relaxation appeal but no explicit spiritual content.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.1,
+    "evidence_text": "Flower shows may have small plant-sale stalls, but shopping is not a primary feature.",
+    "justification": "Inferred from description: seasonal flower show events sometimes include plant/seed stalls, giving minor shopping relevance.",
+    "source_url": "https://www.onmanorama.com/travel/outside-kerala/2025/01/03/chennai-flower-show-entry-fee-timing.html"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.3,
+    "evidence_text": "Hosts an annual flower show event with displays, drawing crowds beyond routine garden visits.",
+    "justification": "Source states: the annual flower show functions as a special event attraction, adding a mild entertainment dimension to the garden.",
+    "source_url": "https://www.onmanorama.com/travel/outside-kerala/2025/01/03/chennai-flower-show-entry-fee-timing.html"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.6,
+    "evidence_text": "Early morning walker passes (monthly, ₹150) are available for individual walkers/joggers.",
+    "justification": "Source states: dedicated monthly walker passes indicate regular solo visitors (walkers/joggers) use the garden.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.6,
+    "evidence_text": "A centrally located garden on Cathedral Road, popular for casual relaxed outings.",
+    "justification": "Inferred from description: a centrally located green space is a convenient casual hangout spot for friends.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.8,
+    "evidence_text": "Discounted entry for children below 10 years age/130cm height cited alongside adult pricing.",
+    "justification": "Source states: differentiated pricing by child height/age suggests families with children are a key visitor segment.",
+    "source_url": "https://ticketprice.in/ticket/semmozhi-poonga/"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.9,
+    "evidence_text": "An outdoor botanical garden with flower displays and walking paths, open 10am-8pm.",
+    "justification": "Inferred from description: as an entirely outdoor botanical garden, sunny/dry weather is best for viewing flowers and walking.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.15,
+    "evidence_text": "No indoor/covered facilities are mentioned for the garden.",
+    "justification": "Inferred from description: an outdoor garden with open walking paths is poorly suited to rainy weather.",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.75,
+    "evidence_text": "Popular with young crowds, joggers, and groups sitting by the shore; Bessy Reads group meets Sunday mornings.",
+    "justification": "Inferred from description: a free, social, low-cost beach promenade with cafes and street food naturally attracts students and young adults for casual hangouts.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.7,
+    "evidence_text": "Locals flock here for evening strolls; visited by thousands daily across demographics.",
+    "justification": "Inferred from description: described as visited by thousands daily, including families and working adults for morning walks and yoga.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.95,
+    "evidence_text": "Free public beach access; no entry fee.",
+    "justification": "Source states: the beach is free public access with only optional spending on street food/snacks.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.25,
+    "evidence_text": "Street food stalls and cafes along the promenade.",
+    "justification": "Inferred from description: some visitors may spend moderately on food/snacks along the promenade, but this is optional, not required.",
+    "source_url": "https://lbb.in/chennai/chennai-elliots-beach/"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium paid experiences at the beach itself.",
+    "justification": "Inferred from description: there is no high-cost activity associated with a free public beach.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.3,
+    "evidence_text": "Named after Edward Elliot, colonial-era chief magistrate; Karl Schmidt memorial commemorates a Danish sailor.",
+    "justification": "Source states: the beach has colonial-era naming history and a historic memorial, though this is a minor draw compared to leisure use.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.9,
+    "evidence_text": "Natural sandy beach with coastal views, described as one of the cleanest and safest beaches in the city.",
+    "justification": "Source states: it is a natural beach setting with clean sands and sea views, the primary attraction.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.5,
+    "evidence_text": "Shrine of Our Lady of Good Health (Annai Vailankanni Church) and Ashtalakshmi Temple (built 1976) located on/near the beach.",
+    "justification": "Source states: two prominent religious sites sit directly on the beach's shore, drawing pilgrims and spiritual visitors.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.15,
+    "evidence_text": "Some food/snack stalls along the promenade, no formal shopping.",
+    "justification": "Inferred from description: minor informal stalls exist but there is no dedicated shopping attraction.",
+    "source_url": "https://lbb.in/chennai/chennai-elliots-beach/"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.6,
+    "evidence_text": "Beach promenade activities, yoga, sunset watching, Bessy Reads community reading group.",
+    "justification": "Inferred from description: the beach functions as a recreational/social hangout spot with informal group activities.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.55,
+    "evidence_text": "Visitors sit by the water and read books; morning walkers and joggers use the beach individually.",
+    "justification": "Inferred from description: the calm promenade suits solo relaxation, reading, and walking.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.8,
+    "evidence_text": "Popular social gathering destination for groups; Bessy Reads gathers as a group every Sunday.",
+    "justification": "Source states: the beach is a well-known social hangout spot for groups of friends in the evenings.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.75,
+    "evidence_text": "Family-friendly beach with police outpost and patrols enhancing visitor security for all demographics.",
+    "justification": "Source states: the beach is described as family-friendly and safe, suitable for family outings.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.4,
+    "evidence_text": "Best visited in the morning or evening for sunrises/sunsets; open-air sandy beach.",
+    "justification": "Inferred from description: as an open outdoor beach, dry weather is preferred for walking, yoga, and sitting on sand, though very hot midday sun is avoided in favor of morning/evening visits.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.15,
+    "evidence_text": "No indoor shelter described; beach activities are weather-dependent.",
+    "justification": "Inferred from description: an open outdoor beach with no indoor facilities is unsuitable for rainy conditions, aside from the adjoining shrine/temple.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.75,
+    "evidence_text": "Popular with young crowds, joggers, and groups sitting by the shore; Bessy Reads group meets Sunday mornings.",
+    "justification": "Inferred from description: same physical beach as Elliot's Beach; free, social, low-cost promenade naturally attracts students and young adults.",
+    "source_url": "https://www.viator.com/en-GB/Chennai-attractions/Elliots-Beach-Besant-Nagar-Beach/overview/d4624-a14738"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.7,
+    "evidence_text": "Locals flock here for evening strolls; visited by thousands daily across demographics.",
+    "justification": "Inferred from description: described as visited by thousands daily, including families and working adults for morning walks and yoga.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.95,
+    "evidence_text": "Free public beach access; no entry fee.",
+    "justification": "Source states: the beach is free public access with only optional spending on street food/snacks.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.25,
+    "evidence_text": "Street food stalls and cafes along the promenade near Besant Nagar.",
+    "justification": "Inferred from description: some visitors spend moderately on food/snacks along the promenade, optional not required.",
+    "source_url": "https://lbb.in/chennai/chennai-elliots-beach/"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "No premium paid experiences at the beach itself.",
+    "justification": "Inferred from description: there is no high-cost activity associated with a free public beach.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.25,
+    "evidence_text": "Neighborhood named after social reformer Annie Besant; beach also historically called Elliot's Beach after a colonial magistrate.",
+    "justification": "Source states: the area carries naming history tied to Annie Besant and colonial administrator Edward Elliot, a minor draw versus leisure use.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.9,
+    "evidence_text": "Natural sandy beach with coastal views, described as one of the cleanest and safest beaches in the city.",
+    "justification": "Source states: it is a natural beach setting with clean sands and sea views, the primary attraction.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.5,
+    "evidence_text": "Shrine of Our Lady of Good Health and Ashtalakshmi Temple (built 1976) located on/near the beach.",
+    "justification": "Source states: two prominent religious sites sit directly on the beach's shore, drawing pilgrims and spiritual visitors.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.2,
+    "evidence_text": "Besant Nagar neighborhood has cafes and small shops near the beach road.",
+    "justification": "Inferred from description: the surrounding Besant Nagar neighborhood has some cafes/small shops, though beach itself has minimal shopping.",
+    "source_url": "https://lbb.in/chennai/chennai-elliots-beach/"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.6,
+    "evidence_text": "Beach promenade activities, yoga, sunset watching, community gatherings.",
+    "justification": "Inferred from description: functions as a recreational/social hangout spot with informal group activities.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.55,
+    "evidence_text": "Visitors sit by the water and read books; morning walkers and joggers use the beach individually.",
+    "justification": "Inferred from description: the calm promenade suits solo relaxation, reading, and walking.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.8,
+    "evidence_text": "Popular social gathering destination for groups.",
+    "justification": "Source states: the beach is a well-known social hangout spot for groups of friends in the evenings.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.75,
+    "evidence_text": "Family-friendly beach with police outpost and patrols enhancing visitor security for all demographics.",
+    "justification": "Source states: the beach is described as family-friendly and safe, suitable for family outings.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.4,
+    "evidence_text": "Best visited in the morning or evening for sunrises/sunsets; open-air sandy beach.",
+    "justification": "Inferred from description: as an open outdoor beach, dry weather is preferred for walking, yoga, and sitting on sand.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.15,
+    "evidence_text": "No indoor shelter described; beach activities are weather-dependent.",
+    "justification": "Inferred from description: an open outdoor beach with no indoor facilities is unsuitable for rainy conditions, aside from the adjoining shrine/temple.",
+    "source_url": "https://en.wikipedia.org/wiki/Edward_Elliot's_Beach"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.65,
+    "evidence_text": "Overseas students entry fee of ₹200 per person listed separately, indicating student visitor segment.",
+    "justification": "Source states: the museum has a specific overseas student ticket category, and kids (5-15) pay a reduced ₹100, indicating student-age visitors are common.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.85,
+    "evidence_text": "Adults pay ₹200 per person entry; a heritage/craft museum typically draws culturally-interested adult tourists.",
+    "justification": "Inferred from description: as a heritage museum with detailed craft/architecture content, it appeals strongly to adult tourists and culture enthusiasts.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.15,
+    "evidence_text": "Entry fee ₹200 for adults, ₹100 for kids.",
+    "justification": "Inferred from description: ₹200 entry plus camera/parking charges places it above a 'low' budget bracket relative to free attractions.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.85,
+    "evidence_text": "Adults ₹200, foreigners ₹350, plus camera charges ₹50-250 and parking ₹20-100.",
+    "justification": "Source states: entry and add-on fees (camera, parking) total a moderate spend typical of a paid cultural attraction.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.2,
+    "evidence_text": "Foreigner entry fee ₹350 is the highest listed ticket tier.",
+    "justification": "Inferred from description: even the highest ticket tier (foreigner rate) is moderate, not a high-budget luxury experience.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.9,
+    "evidence_text": "Cultural center dedicated to preserving South Indian heritage, spread across ten acres with over 18 authentic heritage houses representing Tamil Nadu, Kerala, Karnataka, and Andhra Pradesh.",
+    "justification": "Source states: the museum's core purpose is preserving and showcasing South Indian heritage architecture and history.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.25,
+    "evidence_text": "Located near Muttukadu on ECR, a ten-acre campus with heritage houses.",
+    "justification": "Inferred from description: the campus has some open grounds/gardens but its primary draw is heritage architecture, not nature.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.2,
+    "evidence_text": "Heritage houses represent regional domestic architecture and lifestyle, not primarily religious sites.",
+    "justification": "Inferred from description: some traditional heritage homes may include household shrines, but the museum is not a spiritual/pilgrimage destination.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.65,
+    "evidence_text": "Craft village setting with artisans demonstrating traditional crafts, typically including craft shops selling handicrafts.",
+    "justification": "Inferred from description: as a heritage 'craft village' museum, it commonly features on-site craft/handicraft stalls for purchase alongside exhibits.",
+    "source_url": "https://www.holidify.com/places/chennai/dakshinachitra-museum-sightseeing-120674.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.5,
+    "evidence_text": "Live craft demonstrations, cultural performances, and interactive heritage house tours across the 10-acre campus.",
+    "justification": "Inferred from description: the museum offers immersive, family-oriented cultural entertainment beyond static exhibits.",
+    "source_url": "https://www.holidify.com/places/chennai/dakshinachitra-museum-sightseeing-120674.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.4,
+    "evidence_text": "Self-paced museum walk-through of heritage houses.",
+    "justification": "Inferred from description: a solo visitor can explore the heritage houses independently, though it is more commonly visited in groups.",
+    "source_url": "https://www.holidify.com/places/chennai/dakshinachitra-museum-sightseeing-120674.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.55,
+    "evidence_text": "Popular day-trip destination on ECR for groups exploring craft and heritage exhibits together.",
+    "justification": "Inferred from description: the expansive campus and craft demonstrations suit group exploration among friends.",
+    "source_url": "https://www.thrillophilia.com/attractions/dakshinachitra-chennai"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.85,
+    "evidence_text": "Reduced kids' ticket (₹100 for ages 5-15) indicates family-oriented visitation.",
+    "justification": "Source states: the tiered kids' pricing and 10-acre educational heritage campus is designed for family outings.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.35,
+    "evidence_text": "Ten-acre outdoor campus with heritage houses spread across open grounds.",
+    "justification": "Inferred from description: walking between the 18 heritage houses across a 10-acre outdoor campus is more comfortable in dry weather.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.55,
+    "evidence_text": "Heritage houses themselves are covered/indoor structures even though connected by open pathways.",
+    "justification": "Inferred from description: since exhibits are inside covered heritage houses, rain is tolerable for viewing exhibits, though outdoor walking between houses is less pleasant.",
+    "source_url": "https://www.nativeplanet.com/entry-details/dakshinachitra-museum-entry-fee-timings-51.html"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.55,
+    "evidence_text": "Kids under 10 pay ₹10 entry; art students often visit for the Madras Movement history.",
+    "justification": "Inferred from description: low kids' fee and its status as a major Indian art history site make it a common art-student/school visit destination.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.8,
+    "evidence_text": "Established by K.C.S. Paniker and 38 professional artists; galleries showcase serious contemporary art, appealing to adult art collectors and enthusiasts.",
+    "justification": "Source states: the village is a working artist commune and gallery space, primarily of interest to adult art audiences and collectors.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.85,
+    "evidence_text": "Entry fee ₹30 per person for adults, ₹10 for kids under 10.",
+    "justification": "Source states: entry fee is only ₹30 (with one source citing ₹20), making it a low-cost attraction to simply visit.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/cholamandal-artists-village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.3,
+    "evidence_text": "Art book store and craft shop on site selling handicrafts.",
+    "justification": "Inferred from description: visitors browsing the craft shop or art book store may spend a moderate amount beyond the entry fee.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.55,
+    "evidence_text": "Two commercial galleries (Labernum and Indigo) sell original paintings and sculptures by resident artists.",
+    "justification": "Inferred from description: purchasing original artworks/sculptures from the on-site galleries can represent a high-value purchase, unlike the low entry fee.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.7,
+    "evidence_text": "Founded in 1966 by K.C.S. Paniker; artists credited for the Madras Movement of Art (1950s-1980s); Museum of the Madras Movement opened 2009.",
+    "justification": "Source states: the village has a documented art-historical legacy as the origin of the Madras Movement, with a dedicated museum curating this history.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.3,
+    "evidence_text": "Tree-shaded sculpture garden with open-air theatre near the coast at Injambakkam.",
+    "justification": "Source states: the village includes tree-shaded grounds and a sculpture garden, offering a modest nature/outdoor element.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.1,
+    "evidence_text": "No religious sites or spiritual programming mentioned; it is an art commune.",
+    "justification": "Inferred from description: as a secular artist commune and gallery, there is minimal spiritual relevance beyond incidental themes in some artworks.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.85,
+    "evidence_text": "Two commercial galleries (Labernum, Indigo), an art book store and craft shop sell paintings, sculptures, batiks, and handicrafts.",
+    "justification": "Source states: the village explicitly operates commercial galleries and a craft shop for purchasing art and handicrafts, making shopping a core activity.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.45,
+    "evidence_text": "Open-air theatre on site for performances.",
+    "justification": "Source states: the village has an open-air theatre, indicating occasional entertainment/performance programming alongside art viewing.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.7,
+    "evidence_text": "Self-guided gallery browsing and quiet studio visits.",
+    "justification": "Inferred from description: an art gallery/studio setting is well-suited to solo, contemplative visits by art enthusiasts.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.5,
+    "evidence_text": "Art village setting suitable for small group visits to browse galleries.",
+    "justification": "Inferred from description: friends interested in art or shopping for handicrafts may visit together, though it is a relatively quiet/niche site.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.35,
+    "evidence_text": "Kids under 10 pay a reduced ₹10 entry fee.",
+    "justification": "Inferred from description: a discounted children's fee exists, but the niche art-focused content is less broadly family-oriented than heritage/beach attractions.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/cholamandal-artists-village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.4,
+    "evidence_text": "Tree-shaded sculpture garden and open-air theatre are outdoor spaces.",
+    "justification": "Inferred from description: the outdoor sculpture garden and open-air theatre are best enjoyed in dry weather.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.55,
+    "evidence_text": "Village features indoor art galleries and museums alongside outdoor sculpture garden.",
+    "justification": "Source states: the facility offers indoor galleries and museums providing alternatives during unfavorable weather.",
+    "source_url": "https://en.wikipedia.org/wiki/Cholamandal_Artists'_Village"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.7,
+    "evidence_text": "School children group tickets priced at ₹10; multimedia 3D/4D exhibits (Arise Awake, 9/11-The Awakening, Tears of Vivekananda) designed to engage younger audiences.",
+    "justification": "Source states: a discounted group ticket for school children exists, and the museum uses immersive multimedia formats likely to appeal to student audiences.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.75,
+    "evidence_text": "Adult entry ₹40-50; site commemorates Swami Vivekananda's stay for nine days in 1897 after returning from the West.",
+    "justification": "Inferred from description: as a heritage/spiritual museum tied to a major historical-religious figure, it strongly appeals to adult devotees and history enthusiasts.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.9,
+    "evidence_text": "Basic combo entry (Arise Awake + 3D) ₹40 for adults, ₹30 for children; school group tickets ₹10.",
+    "justification": "Source states: ticket prices range from ₹10 to ₹50, placing it firmly in the low-budget category.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.2,
+    "evidence_text": "Full experience (Arise Awake + 3D + 4D VR) is ₹50 for adults, the highest listed tier.",
+    "justification": "Inferred from description: even the most expensive combo ticket at ₹50 remains a modest spend, only marginally into a medium bracket.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.03,
+    "evidence_text": "No premium or high-cost ticket tier exists; maximum fee is ₹50.",
+    "justification": "Inferred from description: there is no high-budget offering at this museum given ticket prices cap at ₹50.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.85,
+    "evidence_text": "Site where Swami Vivekananda stayed for nine days in 1897 after returning from the West; also known as Ice House/Castle Kernan, a historic colonial-era building.",
+    "justification": "Source states: the building itself is a historic structure (formerly Ice House) and is historically significant as Vivekananda's residence during a pivotal period.",
+    "source_url": "https://www.southindiatoursandtravels.com/vivekananda-house-in-chennai"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.15,
+    "evidence_text": "Located on the Marina/Triplicane seafront but is primarily an indoor multimedia museum.",
+    "justification": "Inferred from description: while near the coast, the attraction itself is an indoor museum experience, not a nature-focused site.",
+    "source_url": "https://vivekanandahouse.org/visit-us"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.9,
+    "evidence_text": "Multimedia cultural museum dedicated to Swami Vivekananda's life, teachings, and spiritual legacy, including exhibits like 'Tears of Vivekananda'.",
+    "justification": "Source states: the museum is explicitly built around the spiritual legacy and teachings of Swami Vivekananda, a major religious/spiritual figure.",
+    "source_url": "https://www.tripadvisor.in/Attraction_Review-g304556-d4139079-Reviews-Vivekananda_House_Multimedia_Cultural_Museum-Chennai_Madras_Chennai_District_Tami.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.1,
+    "evidence_text": "No mention of shopping facilities; site is a memorial museum.",
+    "justification": "Inferred from description: as a heritage/spiritual museum, there is minimal to no shopping component beyond a possible small souvenir counter.",
+    "source_url": "https://vivekanandahouse.org/visit-us"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.55,
+    "evidence_text": "3D show ('9/11 - The Awakening') and 4D VR experience ('Tears of Vivekananda') offered as multimedia exhibits.",
+    "justification": "Source states: the museum uses 3D and 4D VR multimedia shows as part of the visitor experience, giving it an entertainment/edutainment component.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.65,
+    "evidence_text": "Self-paced museum and multimedia exhibit visit, popular among individual devotees and history buffs.",
+    "justification": "Inferred from description: an individual devotee or history enthusiast can easily visit and reflect on the exhibits alone.",
+    "source_url": "https://vivekanandahouse.org/visit-us"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.4,
+    "evidence_text": "Multimedia shows and museum tour can be done in small groups.",
+    "justification": "Inferred from description: friends can visit together for the multimedia exhibits, though the reflective/spiritual tone suits smaller or solo visits more than a boisterous friend outing.",
+    "source_url": "https://vivekanandahouse.org/visit-us"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.7,
+    "evidence_text": "Reduced children's tickets (₹30-40) and school group tickets (₹10) indicate family and school visitation.",
+    "justification": "Source states: tiered pricing for children and school groups indicates the site is commonly visited by families.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.3,
+    "evidence_text": "Historic Ice House building located on the seafront; visit timings split between morning (10 AM-12:30 PM) and afternoon/evening (3 PM-7:15 PM).",
+    "justification": "Inferred from description: since it is primarily an indoor museum, sunny weather is not required, though getting there along the seafront is easier when dry.",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html"
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.75,
+    "evidence_text": "Indoor multimedia museum housed in the historic Ice House building.",
+    "justification": "Inferred from description: as a fully indoor museum with multimedia exhibits, it is well-suited as a rainy-day activity unaffected by weather.",
+    "source_url": "https://vivekanandahouse.org/visit-us"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.4,
+    "evidence_text": "Free entry, open daily 5:30 AM to 9 PM, major architectural and religious landmark",
+    "justification": "Inferred from description: a free heritage/religious site with no entry fee is accessible and appealing to students but is not a typical student hangout spot.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.7,
+    "evidence_text": "Major center for Muharram observance, important Shia mosque, historical/religious/architectural importance",
+    "justification": "Inferred from description: religious/heritage sites of this kind draw more adult and family visitors interested in history and spirituality than students.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.9,
+    "evidence_text": "You don't need to pay any entry fee to visit Thousand Lights Mosque Chennai",
+    "justification": "Source states: no entry fee is charged to visit the mosque.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.2,
+    "evidence_text": "Free entry site with only optional donations or nearby spending",
+    "justification": "Inferred from description: since entry is free, only incidental medium spend (transport, nearby food) applies, not a core Medium-budget attraction.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "Free entry, no ticketed experiences mentioned",
+    "justification": "Inferred from description: no high-cost activities exist at this free religious site.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.7,
+    "evidence_text": "Built by Nawab Umdat-ul-Umra in 1810, medieval architectural style with multiple domes and minarets averaging 64 feet",
+    "justification": "Source states: the mosque was built in 1810 and is noted for historical and architectural importance.",
+    "source_url": "https://www.holidify.com/places/chennai/thousand-lights-mosque-sightseeing-121136.html"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.05,
+    "evidence_text": "Urban mosque built on 3 acres of land, no nature/garden focus mentioned",
+    "justification": "Inferred from description: an urban religious monument has essentially no nature-oriented appeal.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.95,
+    "evidence_text": "One of the most important Shia mosques in India and a major center for the observance of Muharram",
+    "justification": "Source states: the mosque holds major religious significance as a key Shia worship site and Muharram center.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.02,
+    "evidence_text": "No shopping facilities described at the mosque",
+    "justification": "Inferred from description: this is a place of worship with no shopping element.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.05,
+    "evidence_text": "A religious and architectural landmark, not an entertainment venue",
+    "justification": "Inferred from description: no entertainment offerings exist at a mosque.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.5,
+    "evidence_text": "Open daily for prayer and visitation, quiet heritage site",
+    "justification": "Inferred from description: a solo visitor can easily and comfortably visit a religious/heritage landmark like this.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.35,
+    "evidence_text": "Heritage and religious landmark visited for architecture and history",
+    "justification": "Inferred from description: groups of friends occasionally visit for sightseeing but it is not a primary social/friends destination.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.6,
+    "evidence_text": "Major religious and cultural landmark in Chennai, free and open to all visitors",
+    "justification": "Inferred from description: religious heritage sites like this are commonly visited by families as part of cultural/spiritual outings.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.5,
+    "evidence_text": "Open daily 5:30 AM to 9 PM, built with domes, minarets, and covered prayer hall",
+    "justification": "Inferred from description: the mosque complex includes outdoor courtyards, so sunny weather is pleasant but not essential.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/thousand-lights-mosque"
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.6,
+    "evidence_text": "Large covered assembly hall lit by up to a thousand lamps, indoor prayer spaces",
+    "justification": "Inferred from description: the mosque's main hall is a large covered indoor space, so rain does not significantly hinder a visit.",
+    "source_url": "https://www.holidify.com/places/chennai/thousand-lights-mosque-sightseeing-121136.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.35,
+    "evidence_text": "1000-year-old temple, one of 108 Divya Desams, free general entry",
+    "justification": "Inferred from description: students may visit for cultural/historical interest but it is primarily a devotional site.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.75,
+    "evidence_text": "One of 108 Divya Desams dedicated to Vishnu, houses five forms of Vishnu including Krishna as charioteer",
+    "justification": "Inferred from description: major Vaishnavite pilgrimage temples of this stature primarily attract adult devotees and pilgrims.",
+    "source_url": "https://yometro.com/travel-guide/attraction-sri-parthasarathy-temple-chennai"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.85,
+    "evidence_text": "General Entry is Free",
+    "justification": "Source states: general entry to the temple is free.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.35,
+    "evidence_text": "Special Darshan available for Rs. 50 & 100",
+    "justification": "Source states: paid special darshan tickets cost Rs. 50 and Rs. 100, a modest medium-level spend.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "Only free general entry and low-cost special darshan tickets (Rs 50-100) mentioned",
+    "justification": "Inferred from description: no high-cost offerings exist at this temple beyond nominal special darshan fees.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.75,
+    "evidence_text": "Structure more than 1000 years old, built in 8th century by Pallava kings, edict dated 808 A.D., rebuilt in 16th century by Vijayanagar kings",
+    "justification": "Source states: the temple has a documented history spanning over a thousand years with Pallava, Chola, and Vijayanagar era contributions.",
+    "source_url": "https://www.oneindia.com/temples/parthasarathy-perumal-temple-triplicane-i249/"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.03,
+    "evidence_text": "Urban temple complex in Triplicane, no nature/garden focus mentioned",
+    "justification": "Inferred from description: this is a dense urban temple complex with no nature-oriented attractions.",
+    "source_url": "https://yometro.com/travel-guide/attraction-sri-parthasarathy-temple-chennai"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.95,
+    "evidence_text": "One of the 108 Divya Desams dedicated to Vishnu, houses five forms of Vishnu including Narasimha, Rama, Gajendra Varadaraja, Ranganatha and Krishna",
+    "justification": "Source states: the temple is one of the 108 Divya Desams, canonical holy shrines of Vishnu worship.",
+    "source_url": "https://www.oneindia.com/temples/parthasarathy-perumal-temple-triplicane-i249/"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "No shopping facilities described; surrounding Triplicane area has markets but temple itself is devotional",
+    "justification": "Inferred from description: the temple itself offers no shopping, aside from incidental nearby street vendors.",
+    "source_url": "https://yometro.com/travel-guide/attraction-sri-parthasarathy-temple-chennai"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.05,
+    "evidence_text": "A major pilgrimage and heritage temple, not an entertainment venue",
+    "justification": "Inferred from description: no entertainment offerings exist at this devotional site.",
+    "source_url": "https://yometro.com/travel-guide/attraction-sri-parthasarathy-temple-chennai"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.55,
+    "evidence_text": "Open for morning and evening darshan daily, a pilgrimage site",
+    "justification": "Inferred from description: solo pilgrims commonly visit major temples like this for individual worship.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.3,
+    "evidence_text": "Historic Divya Desam temple visited for darshan and heritage viewing",
+    "justification": "Inferred from description: friend groups may visit for cultural sightseeing but it is primarily a devotional destination.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.7,
+    "evidence_text": "Major Vaishnavite pilgrimage temple with morning and evening darshan timings",
+    "justification": "Inferred from description: temples of this significance are commonly visited by families for worship and rituals.",
+    "source_url": "https://www.holidify.com/places/chennai/parthasarathy-temple-sightseeing-121152.html"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.45,
+    "evidence_text": "Morning hours 5:50 a.m.-12:30 p.m., evening hours 4:00 p.m.-9 p.m., traditional Dravidian temple complex with open courtyards",
+    "justification": "Inferred from description: temple complexes have outdoor courtyard areas where sunny weather is pleasant but not essential.",
+    "source_url": "https://www.oneindia.com/temples/parthasarathy-perumal-temple-triplicane-i249/"
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.6,
+    "evidence_text": "Ancient stone temple structure with covered sanctum and mandapams built over 1000 years",
+    "justification": "Inferred from description: like most South Indian temples, the sanctum and mandapam halls are covered stone structures largely unaffected by rain.",
+    "source_url": "https://www.oneindia.com/temples/parthasarathy-perumal-temple-triplicane-i249/"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.4,
+    "evidence_text": "Free darshan for all devotees, popular temple in central Chennai",
+    "justification": "Inferred from description: a free, accessible temple can draw student visitors though it is primarily devotional.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.7,
+    "evidence_text": "About 7000 couples are believed to be married in this temple every year; known for prophetic and healing blessings",
+    "justification": "Source states: thousands of couples marry at this temple annually, indicating strong adult devotee engagement.",
+    "source_url": "https://luxevista.in/arulmigu-vadapalani-murugan-temple/"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.85,
+    "evidence_text": "The darshan is free for all devotees to the temple",
+    "justification": "Source states: darshan at the temple is free for all devotees.",
+    "source_url": "https://luxevista.in/arulmigu-vadapalani-murugan-temple/"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.25,
+    "evidence_text": "Free darshan with possible optional special pooja fees at a large popular temple",
+    "justification": "Inferred from description: as a heavily visited temple, optional special poojas may involve modest medium-level fees, though not explicitly listed.",
+    "source_url": "https://luxevista.in/arulmigu-vadapalani-murugan-temple/"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.05,
+    "evidence_text": "Free darshan for all devotees, no high-cost offerings mentioned",
+    "justification": "Inferred from description: no high-cost activities exist at this free temple.",
+    "source_url": "https://luxevista.in/arulmigu-vadapalani-murugan-temple/"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.45,
+    "evidence_text": "Built around 1890 by Annaswamy Nayakar as a thatched shed, renovated in the 1920s with a rajagopuram added, roughly 125 years old",
+    "justification": "Source states: the temple's history dates to around 1890 with renovations in the 1920s, making it a relatively recent but historically noted temple.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.03,
+    "evidence_text": "Urban temple located in Vadapalani neighborhood of Chennai",
+    "justification": "Inferred from description: this is a dense urban temple with no nature-oriented appeal.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.95,
+    "evidence_text": "Dedicated to Lord Muruga, known for founder Annaswamy's prophetic and healing 'arul vaakku', a major devotional site",
+    "justification": "Source states: the temple became famous for the founder's prophetic and healing blessings and is dedicated to Lord Muruga (Kartikeya).",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.1,
+    "evidence_text": "Located near Vadapalani commercial area but temple itself has no shopping facilities",
+    "justification": "Inferred from description: the temple has no internal shopping, though the surrounding area has some commercial activity.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.05,
+    "evidence_text": "A devotional temple site, not an entertainment venue",
+    "justification": "Inferred from description: no entertainment offerings exist at this temple.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.5,
+    "evidence_text": "Open daily for darshan, individual devotees seek blessings and healing prayers",
+    "justification": "Inferred from description: solo devotees commonly visit for personal blessings given the temple's reputation for healing.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.3,
+    "evidence_text": "Popular devotional temple in central Chennai visited by many devotees",
+    "justification": "Inferred from description: groups of friends occasionally visit together but it is primarily an individual/family devotional site.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.75,
+    "evidence_text": "About 7000 couples believed to be married in this temple every year, popular for family religious rituals",
+    "justification": "Source states: thousands of weddings occur here yearly, indicating strong family and couple engagement.",
+    "source_url": "https://luxevista.in/arulmigu-vadapalani-murugan-temple/"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.45,
+    "evidence_text": "Open 5:00 am to 12:30 pm and 4:00 pm to 9:00 pm, with rajagopuram and outdoor temple courtyards",
+    "justification": "Inferred from description: the temple complex includes an outdoor gopuram and courtyard areas where sunny weather is pleasant but not essential.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.6,
+    "evidence_text": "Constructed temple with covered sanctum sanctorum and mandapams since 1890 renovation",
+    "justification": "Inferred from description: the core shrine and mandapam are covered structures, so rain does not significantly hinder a darshan visit.",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/vadapalani-murugan-temple"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.75,
+    "evidence_text": "Largest gaming arcade of south India, Timezone for arcade games, Escape cineplex, events like K-Pop dance plays",
+    "justification": "Inferred from description: arcade gaming, cinema, and event-driven entertainment strongly appeal to students and young people.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.6,
+    "evidence_text": "200+ retail shops with national and international brands, luxury boutique hotel, fine dining, cinema",
+    "justification": "Inferred from description: a full-service mall with premium brands and dining also strongly attracts adult shoppers.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.15,
+    "evidence_text": "Houses global and premium brands including H&M, Pantaloons, Lifestyle, luxury boutique hotel",
+    "justification": "Inferred from description: window shopping and food court visits can be low-cost, but the mall's brand mix skews upscale.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.65,
+    "evidence_text": "Anchor shops include H&M, Pantaloons, Lifestyle, Big Bazaar, plus food court and diverse dining",
+    "justification": "Inferred from description: mainstream fashion retail and food court dining represent a typical medium-budget mall experience.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.55,
+    "evidence_text": "Luxury boutique hotel, international brands, largest cinema multiplex (Escape, 8 screens), fine dining restaurants",
+    "justification": "Inferred from description: the mall's luxury hotel, premium brands, and fine dining support high-spend visits as well.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.05,
+    "evidence_text": "Inaugurated in 2010, a modern shopping and entertainment facility",
+    "justification": "Inferred from description: this is a modern commercial complex with no historical significance.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.02,
+    "evidence_text": "Indoor shopping mall and entertainment complex with no nature elements described",
+    "justification": "Inferred from description: as an indoor commercial mall, it has essentially no nature-related appeal.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.02,
+    "evidence_text": "A shopping and entertainment mall with retail, cinema, and dining",
+    "justification": "Inferred from description: a commercial mall has no spiritual or religious relevance.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.95,
+    "evidence_text": "Houses more than 200 retail shops with renowned national and international brands including H&M, Pantaloons, Lifestyle, Big Bazaar",
+    "justification": "Source states: the mall houses over 200 retail shops with major national and international brand anchors.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.85,
+    "evidence_text": "Largest gaming arcade of south India (Games The Shop), city's largest cinema multiplex Escape, Timezone arcade, K-Pop dance events",
+    "justification": "Source states: the mall features the largest gaming arcade in south India and the city's largest cinema multiplex.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.45,
+    "evidence_text": "Open daily 10 AM to 10 PM with shopping, dining, and cinema options",
+    "justification": "Inferred from description: solo visitors can comfortably shop, watch a movie, or dine alone at the mall.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.85,
+    "evidence_text": "Largest gaming arcade of south India, 8-screen cineplex, food court, events like K-Pop dance plays",
+    "justification": "Inferred from description: arcade gaming, movies, and food court dining are classic group-friendly activities for friends.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.7,
+    "evidence_text": "Diverse food court, cinema multiplex, retail brands, and arcade entertainment suitable for varied age groups",
+    "justification": "Inferred from description: the mix of shopping, dining, and cinema/arcade entertainment makes it a popular family outing destination.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.3,
+    "evidence_text": "An indoor mall complex with retail, cinema and dining",
+    "justification": "Inferred from description: since the mall is fully indoor, sunny weather is not required, though it may still be a nice-weather outing.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.85,
+    "evidence_text": "Indoor mall with retail shops, cineplex, gaming arcade, and food court, open 10 AM to 10 PM daily",
+    "justification": "Inferred from description: as a fully enclosed indoor mall, it is an ideal rainy-day destination unaffected by weather.",
+    "source_url": "https://en.wikipedia.org/wiki/Express_Avenue"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Age",
+    "state": "Student",
+    "raw_score": 0.8,
+    "evidence_text": "47 dry rides including Big Wheel, Kamikaze Ranger, Revolution, Rock o Plane, plus two water parks for kids and adults",
+    "justification": "Inferred from description: thrill rides and water park attractions strongly appeal to students and young adults.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Age",
+    "state": "Adult",
+    "raw_score": 0.6,
+    "evidence_text": "Water world with 2 water parks designed for both kids and adults, jumbo packages for dry+water rides",
+    "justification": "Inferred from description: the park explicitly caters to adults as well as children with dedicated adult ride and water park sections.",
+    "source_url": "https://www.plumint.com/mgm-dizzee-world-ticket-prices-and-packages-10074/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Budget",
+    "state": "Low",
+    "raw_score": 0.05,
+    "evidence_text": "Regular adult tickets around ₹450-₹899, jumbo packages ₹699-₹1179",
+    "justification": "Inferred from description: entry tickets starting near ₹450-900 make this a poor fit for a low-budget outing.",
+    "source_url": "https://www.upto75.com/mgm-dizzee-world-ecr-chennai-discount-offers"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Budget",
+    "state": "Medium",
+    "raw_score": 0.45,
+    "evidence_text": "Adult tickets ₹799-₹899 on weekdays, child tickets from ₹599",
+    "justification": "Source states: weekday adult ticket prices range from ₹799-₹899, consistent with a medium-level spend for a day outing.",
+    "source_url": "https://www.upto75.com/mgm-dizzee-world-ecr-chennai-discount-offers"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Budget",
+    "state": "High",
+    "raw_score": 0.8,
+    "evidence_text": "Ticket prices ₹950-₹1,099 on weekends, jumbo packages up to ₹1179, plus food and ride add-ons",
+    "justification": "Source states: weekend ticket prices reach ₹950-1099 per person, and combined dry+water jumbo packages cost up to ₹1179.",
+    "source_url": "https://www.upto75.com/mgm-dizzee-world-ecr-chennai-discount-offers"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Interest",
+    "state": "History",
+    "raw_score": 0.02,
+    "evidence_text": "A modern amusement and water park located in Muthukadu, Chennai",
+    "justification": "Inferred from description: this is a contemporary theme park with no historical significance.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Interest",
+    "state": "Nature",
+    "raw_score": 0.15,
+    "evidence_text": "Located in Muthukadu near ECR (East Coast Road) with outdoor rides and water attractions",
+    "justification": "Inferred from description: the park's coastal outdoor setting gives a mild nature-adjacent element, though it is primarily a built attraction.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Interest",
+    "state": "Spiritual",
+    "raw_score": 0.02,
+    "evidence_text": "An amusement and water park with dry rides and water slides",
+    "justification": "Inferred from description: an amusement park has no spiritual or religious relevance.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Interest",
+    "state": "Shopping",
+    "raw_score": 0.05,
+    "evidence_text": "Focused on rides and water park attractions, no shopping facilities described",
+    "justification": "Inferred from description: the park has no shopping focus, being centered on rides and water attractions.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Interest",
+    "state": "Entertainment",
+    "raw_score": 0.95,
+    "evidence_text": "47 dry rides plus 2 water parks with slides, artificial waterfalls, water springs and wave pool",
+    "justification": "Source states: the park offers around 47 dry rides and two water parks with diverse slides and wave attractions.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Travel Type",
+    "state": "Solo",
+    "raw_score": 0.15,
+    "evidence_text": "Rides and water park attractions typically designed for group enjoyment",
+    "justification": "Inferred from description: amusement/water parks are generally low-fit for solo travelers, being oriented toward group fun.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Travel Type",
+    "state": "Friends",
+    "raw_score": 0.85,
+    "evidence_text": "47 dry rides including thrill rides like Kamikaze Ranger and Revolution, plus water parks for adults",
+    "justification": "Inferred from description: thrill rides and water park attractions are classic group activities enjoyed with friends.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Travel Type",
+    "state": "Family",
+    "raw_score": 0.9,
+    "evidence_text": "Kids' rides include Bat Man Jet, Caterpillar, Children's Land, Cup Saucer alongside adult rides and water parks for kids and adults",
+    "justification": "Source states: the park has dedicated kids' rides alongside adult rides and water parks for both kids and adults, indicating strong family appeal.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Weather",
+    "state": "Sunny",
+    "raw_score": 0.85,
+    "evidence_text": "Outdoor amusement and water park open 10:30 AM to 6:00 PM (7:30 PM in peak season) with water slides and outdoor rides",
+    "justification": "Inferred from description: as an open-air amusement and water park, sunny weather is important for a good visitor experience.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "variable": "Weather",
+    "state": "Rainy",
+    "raw_score": 0.15,
+    "evidence_text": "Outdoor dry rides and water park attractions exposed to weather",
+    "justification": "Inferred from description: rain would disrupt outdoor dry rides and reduce visitor comfort even at the water park, making this a poor rainy-day fit.",
+    "source_url": "https://travelwayfinder.com/mgm-dizzee-world-entry-ticket-timings/"
+  }
+]
