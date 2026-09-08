@@ -1,0 +1,162 @@
+[
+  {
+    "place_id": "P01",
+    "place_name": "Marina Beach",
+    "opening_hours_text": "24/7 (open public beach, no gate/entry control)",
+    "source": "YoMetro / multiple travel guides",
+    "source_url": "https://yometro.com/travel-guide/attraction-marina-beach-chennai",
+    "notes": "Beach itself has no gates and is technically accessible 24/7 with free entry. Sources vary on a 'recommended visiting window' (some cite 5:00 AM-8:00 PM as the practically usable/patrolled window, others 12am-12am), but there is no official closing time or ticketed access. Late-night/very early presence may be discouraged by police patrol in practice, but there is no formal opening_hours restriction."
+  },
+  {
+    "place_id": "P02",
+    "place_name": "Fort St. George",
+    "opening_hours_text": "Mo-Th,Sa-Su 09:00-17:00; Fr off (fort/museum grounds); Fort St. George Museum specifically: Mo-Su 09:00-17:00; Fr off (per OSM/Overpass)",
+    "source": "Chennai Tourism (chennaitourism.travel) and OSM/Overpass-provided data",
+    "source_url": "https://chennaitourism.travel/fort-st-george-chennai",
+    "notes": "Travel-guide source (chennaitourism.travel) describes the fort premises overall as 9:00 AM-5:00 PM, closed Fridays -- consistent with the OSM museum tag 'Mo-Su 09:00-17:00; Fr off' except that source lists museum as open Sunday while general fort access some sources also list as closed Friday only. St. Mary's Church within the fort has separate hours: Mon-Sat 10:00-17:00 (closed/limited Sunday for tourists due to services). Net recommendation: use 'Mo-Th,Sa-Su 09:00-17:00; Fr off' for the fort grounds+museum combined, matching the Overpass tag for the museum component specifically."
+  },
+  {
+    "place_id": "P03",
+    "place_name": "Kapaleeshwarar Temple",
+    "opening_hours_text": "Mo-Su 05:00-12:30,16:00-21:30 (most sources: open daily, no weekly closure); one source (Tamil Nadu Tourism) states closed Mondays with hours 05:00-12:00,17:00-21:00",
+    "source": "Multiple travel sites (ciplore.com, indianpanorama.in, ymetro.com) vs. tamilnadutourism.com",
+    "source_url": "https://www.tamilnadutourism.com/chennai/temples/kapaleeshwarar-temple.php",
+    "notes": "Majority of sources describe the temple as open every day of the week with a morning session (~5:00/5:00 AM to 12:00/12:30 PM) and an evening session (~4:00/5:00 PM to 9:00/9:30 PM), i.e. NOT closed on any weekday -- this is typical for major South Indian temples which rarely have a full weekly closure. However, the official Tamil Nadu Tourism page states the temple is closed on Mondays. Given the conflict, treat Monday-closure as uncertain/low-confidence; if the pipeline needs a single deterministic rule, the safer default (matching majority of independent sources) is: open daily with a midday gap 12:30-16:00."
+  },
+  {
+    "place_id": "P04",
+    "place_name": "San Thome Basilica (San Thome Cathedral Basilica)",
+    "opening_hours_text": "Mo-Su 05:00-21:00 (general church/visiting hours per trawell.in); Mass times: Mon-Sat 05:45,06:15,11:00,17:45,18:15; Sun 06:00,07:15,08:30,10:00,11:30,17:30,18:00",
+    "source": "trawell.in",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/san-thome-cathedral-basilica",
+    "notes": "trawell.in and other travel-guide sources give a single daily window of 5:00 AM-9:00 PM (some sources round to 5:45 AM-10:00 PM on weekdays, 6:00 AM-10:00 PM Sunday, tied to first/last mass). Separately, the official Incredible India government portal (incredibleindia.gov.in) lists a much narrower 'visiting hours' window -- Tue & Thu 14:30-16:30, Sat 10:30-12:30 & 14:30-16:30 -- which appears to refer to a specific restricted area (likely the underground tomb chamber/museum of St. Thomas) rather than general church access. No entry fee; open to public daily for the church itself."
+  },
+  {
+    "place_id": "P05",
+    "place_name": "Government Museum, Chennai (Egmore)",
+    "opening_hours_text": "Sa-Th 09:30-17:00 (sometimes cited as 09:30-17:30); Fr off",
+    "source": "trawell.in",
+    "source_url": "https://www.trawell.in/tamilnadu/chennai/govt-museum",
+    "notes": "Consistently reported closed on Fridays and on national holidays (Republic Day Jan 26, Independence Day Aug 15, Gandhi Jayanti Oct 2). Closing time varies slightly by source between 5:00 PM and 5:30 PM/6:30 PM depending on section; last entry likely ~30-60 min before closing. Entry fee: INR 15 (Indian), INR 250 (foreigner)."
+  },
+  {
+    "place_id": "P06",
+    "place_name": "Guindy National Park",
+    "opening_hours_text": "9:00 AM - 5:30 PM (Wikipedia states 9 AM - 6 PM); closed Tuesdays",
+    "source": "Wikipedia",
+    "source_url": "https://en.wikipedia.org/wiki/Guindy_National_Park",
+    "notes": "Sources disagree slightly on closed day (some travel sites say Monday, Wikipedia says Tuesday) and on closing time (5:30 PM vs 6 PM). Snake Park section: 9 AM-5:30 PM; Children's Park: 9 AM-6 PM. Entry to core park area requires forest ranger escort. Cross-checked with NativePlanet, Holidify, Trawell."
+  },
+  {
+    "place_id": "P07",
+    "place_name": "Arignar Anna Zoological Park (Vandalur Zoo)",
+    "opening_hours_text": "9:00 AM - 5:00 PM (Wikipedia states 8:30 AM - 5:30 PM); closed Tuesdays",
+    "source": "Wikipedia",
+    "source_url": "https://en.wikipedia.org/wiki/Arignar_Anna_Zoological_Park",
+    "notes": "Sources disagree on exact open/close time (9-5 vs 8:30-5:30) and slightly on closed day (most say Tuesday for weekly maintenance; a few travel sites say Monday). Cross-checked with NativePlanet, Thrillophilia, Tamil Nadu Tourism official site."
+  },
+  {
+    "place_id": "P08",
+    "place_name": "Valluvar Kottam",
+    "opening_hours_text": "10:00 AM - 8:00 PM daily (some sources say 8:30 AM - 5:30 PM or 8 AM - 6 PM); no designated weekly closed day, closed on national holidays",
+    "source": "Chennai Tourism",
+    "source_url": "https://chennaitourism.travel/valluvar-kottam-monument-chennai",
+    "notes": "Notable inconsistency across sources on exact hours (10 AM-8 PM vs 8:30 AM-5:30 PM vs 8 AM-6 PM). One source notes the painting gallery/exhibition hall is open only 10 AM-5:30 PM while the arch/hall/chariot area is accessible until 7:30 PM. No weekly closure day found; closed on national holidays."
+  },
+  {
+    "place_id": "P09",
+    "place_name": "Birla Planetarium (Chennai)",
+    "opening_hours_text": "Open daily 10:00 AM - 5:45 PM, closed only on national holidays. English 3D/sky show timings: 10:45 AM, 1:15 PM, 3:45 PM. Tamil show timings: 12:00 PM, 2:30 PM, 4:30 PM. Saturday night sky observation show: 7:00 PM - 9:00 PM.",
+    "source": "Wikipedia",
+    "source_url": "https://en.wikipedia.org/wiki/Birla_Planetarium,_Chennai",
+    "notes": "This is a planetarium with discrete showtimes rather than continuous open access, though the facility/building hours are 10 AM-5:45 PM. Cross-checked with Holidify and Chennai Online, which list the same show time slots. Closed only on national holidays."
+  },
+  {
+    "place_id": "P10",
+    "place_name": "Semmozhi Poonga",
+    "opening_hours_text": "10:00 AM - 7:30 PM (Wikipedia states 10 AM - 8 PM) for general visitors, all days except Tuesday. Separate early-morning walkers' slot: 6:00 AM - 8:00 AM (monthly pass holders only, Rs.150).",
+    "source": "Wikipedia",
+    "source_url": "https://en.wikipedia.org/wiki/Semmozhi_Poonga",
+    "notes": "Closed Tuesdays. Minor discrepancy in closing time between sources (7:30 PM per YoMetro vs 8 PM per Wikipedia). Early morning walk access is a separate, restricted entry window not open to general tourists. Cross-checked with YoMetro, Thrillophilia."
+  },
+  {
+    "place_id": "P11",
+    "place_name": "Elliot's Beach (Besant Nagar)",
+    "opening_hours_text": "Open 24 hours, every day",
+    "source": "YoMetro / myholidayhappiness travel guides",
+    "source_url": "https://yometro.com/travel-guide/attraction-elliots-beach-chennai",
+    "notes": "Open public beach with no gate/entry fee and no closing time; effectively 24/7. Adjoining shops and food stalls typically operate roughly 7 AM to 7 PM, but the beach itself is unrestricted at all hours. Early morning and evening are the most popular/pleasant visiting times."
+  },
+  {
+    "place_id": "P12",
+    "place_name": "Besant Nagar Beach",
+    "opening_hours_text": "Open 24 hours, every day",
+    "source": "myholidayhappiness / Rehlat travel guides",
+    "source_url": "https://myholidayhappiness.com/place/tamilnadu/chennai/besant-nagar-beach",
+    "notes": "Same physical beach as Elliot's Beach (P11); public beach with free, unrestricted access at all hours, no entry gate or fee. Treated as its own row per instructions but the underlying fact is identical: open 24/7."
+  },
+  {
+    "place_id": "P13",
+    "place_name": "DakshinaChitra",
+    "opening_hours_text": "Weekdays 10:00 AM - 6:00 PM; Weekends 10:00 AM - 7:00 PM",
+    "source": "DakshinaChitra official website",
+    "source_url": "https://www.dakshinachitra.net/visit-Dakshinachitra",
+    "notes": "Closed on Tuesdays. Remains open on national holidays except Diwali. No specific last-entry time listed on the official page. Confirmed by NativePlanet and other travel-guide sources (which also cite the Tuesday closure)."
+  },
+  {
+    "place_id": "P14",
+    "place_name": "Cholamandal Artists' Village",
+    "opening_hours_text": "9:30 AM - 6:30 PM, every day of the week",
+    "source": "Chennai Tourism (chennaitourism.travel), corroborated by Trawell and other travel guides",
+    "source_url": "https://chennaitourism.travel/cholamandal-artists-village-chennai",
+    "notes": "No weekly closed day reported; open all 7 days including weekends. One lower-confidence source cited alternate hours of 10 AM - 5 PM, so timing may vary slightly by source, but 9:30 AM-6:30 PM daily (no closure day) is the most consistently reported figure. Entry fee ~₹30 adults, ₹10 kids."
+  },
+  {
+    "place_id": "P15",
+    "place_name": "Vivekananda House (Vivekanandar Illam)",
+    "opening_hours_text": "10:00 AM - 12:30 PM and 3:00 PM - 7:15 PM (split morning/evening sessions)",
+    "source": "IndianHoliday / Chennai Tourism travel guides",
+    "source_url": "https://www.indianholiday.com/tamil-nadu/chennai/historical-monuments/vivekananda-illam-chennai.html",
+    "notes": "Museum closes midday (12:30-3:00 PM gap) between the two visiting sessions. Sources disagree on the weekly closed day: most travel guides state closed on Wednesdays, while at least one source states closed on Mondays -- this should be verified directly with Ramakrishna Math (site maintainer) if precision matters; Wikipedia page for Vivekanandar Illam does not list operating hours or a closure day at all."
+  },
+  {
+    "place_id": "P16",
+    "place_name": "Thousand Lights Mosque",
+    "opening_hours_text": "Daily 5:30 AM - 9:00 PM. No formal midday closure to visitors, but avoid the 5 daily prayer times (especially Friday Jumu'ah early afternoon) when access for non-worshippers may be restricted.",
+    "source": "Multiple travel sites (Yatra.com, Holidify, Trawell)",
+    "source_url": "https://www.yatra.com/india-tourism/attractions-in-chennai/thousand-lights-mosque",
+    "notes": "No official website found; hours consistent across several third-party travel/tourism sites. Free entry, donations welcome. Best visited outside prayer hours."
+  },
+  {
+    "place_id": "P17",
+    "place_name": "Parthasarathy Temple",
+    "opening_hours_text": "Daily: morning 6:00 AM - 12:00/12:30 PM, closed midday, reopens evening 4:00 PM - 9:00 PM. Saturday differs: 5:30 AM - 12:00 PM and 4:00 PM - 10:00 PM.",
+    "source": "GoTirupati / Trawell / DarshansTime (temple info aggregators)",
+    "source_url": "https://gotirupati.com/parthasarathy-temple-triplicane/",
+    "notes": "Midday closure gap approx 12:00/12:30 PM to 4:00 PM confirmed across multiple sources (typical for South Indian temples). Minor variation between sources on exact morning close time (12:00 vs 12:30) and Saturday evening close (9 vs 10 PM). General darshan free; special darshan Rs 50/100."
+  },
+  {
+    "place_id": "P18",
+    "place_name": "Vadapalani Murugan Temple",
+    "opening_hours_text": "Daily: 5:00 AM - 12:30 PM, closed midday, reopens 4:00 PM - 9:00 PM. Same schedule Monday to Sunday; extended/continuous hours during festival days.",
+    "source": "GoTirupati / DarshansBooking (temple info aggregators)",
+    "source_url": "https://gotirupati.com/vadapalani-temple-timings/",
+    "notes": "Midday closure gap approx 12:30 PM to 4:00 PM confirmed. Darshan free; special darshan tickets Rs 50/100 available. On festival days temple stays open through midday."
+  },
+  {
+    "place_id": "P19",
+    "place_name": "Express Avenue (shopping mall)",
+    "opening_hours_text": "Daily 10:00 AM - 10:00 PM, same hours every day of the week including weekends and public holidays.",
+    "source": "Holidify / Rehlat / malls.com (travel/mall aggregator sites)",
+    "source_url": "https://www.holidify.com/places/chennai/express-avenue-sightseeing-121150.html",
+    "notes": "Could not fetch official expressavenue.in/mall-hours.html directly (SSL certificate error during fetch), so relying on consistent third-party corroboration. Individual stores/restaurants inside may vary slightly. No midday closure (not applicable to malls)."
+  },
+  {
+    "place_id": "P20",
+    "place_name": "MGM Dizzee World",
+    "opening_hours_text": "Mo-Fr 10:30 AM - 6:00 PM; Sa-Su and Public Holidays 10:30 AM - 6:30 PM. Extended to ~7:30 PM during peak summer (mid-April to end May) and winter (mid-December to end January) seasons.",
+    "source": "Official site (mgmdizzeeworld.com) and NativePlanet",
+    "source_url": "https://www.mgmdizzeeworld.com/",
+    "notes": "Verifies/matches the OSM/Overpass data closely: OSM stated 'Mo-Fr 10:30-18:30, Sa-Su,PH 10:30-19:30' but the official site explicitly states weekday close is 18:00 (6:00 PM), not 18:30, and weekend/holiday close is 18:30 (6:30 PM), not 19:30 -- OSM figures appear to be off by 30-60 min (possibly including peak-season extended hours). Recommend using official site's weekday 10:30-18:00 / weekend-holiday 10:30-18:30 as base hours, with a note that peak season (mid-Apr to end-May, mid-Dec to end-Jan) extends to ~19:30. Park occasionally closes for maintenance/private events."
+  }
+]

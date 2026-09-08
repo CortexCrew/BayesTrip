@@ -39,10 +39,17 @@ all places; transition: each row sums to 1 across all destinations).
 
 ## 06_HMM_Emission — formula
 
-Per place x {Morning, Afternoon, Evening}: 1.0 if fully open in that
-slot, 0.5 if partially open, 0.02 floor if closed (never a hard 0, so a
-state is never permanently zeroed out in Viterbi). Normalized per place
-across the 3 slots to sum to 1.
+Time slots are fixed as Morning 06:00-12:00, Afternoon 12:00-17:00,
+Evening 17:00-21:00. Opening hours were researched per place (free
+text + sources in `raw/opening_hours_research.json`) and hand-extracted
+into structured daily intervals (`raw/opening_hours.json`); day-of-week
+variation (e.g. a Tuesday closure) is not modeled since the table only
+covers time-of-day within a visiting day.
+
+Per place x slot: 1.0 if the slot is fully covered by an open interval,
+0.5 if partially covered, 0.02 floor if not covered at all (never a
+hard 0, so a state is never permanently zeroed out in Viterbi).
+Normalized per place across the 3 slots to sum to 1.
 
 ## Validation
 

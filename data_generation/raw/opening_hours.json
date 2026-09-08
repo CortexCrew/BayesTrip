@@ -1,0 +1,23 @@
+{
+  "_comment": "Structured daily opening intervals extracted from research (raw text + sources in opening_hours_research.json). Hours are in 24h decimal (e.g. 12.5 = 12:30). Multiple intervals mean a midday closure gap. Day-of-week variation (e.g. some places closing Tuesdays) is not modeled here since the emission table only covers Morning/Afternoon/Evening within a visiting day, not day-of-week.",
+  "P01": {"name": "Marina Beach", "intervals": [[0, 24]], "note": "Open public beach, no gate/entry control."},
+  "P02": {"name": "Fort St. George", "intervals": [[9, 17]], "note": "Fort grounds + museum, per Chennai Tourism / OSM Overpass tag."},
+  "P03": {"name": "Kapaleeshwarar Temple", "intervals": [[5, 12.5], [16, 21.5]], "note": "Morning and evening darshan sessions with a midday gap."},
+  "P04": {"name": "San Thome Basilica", "intervals": [[5, 21]], "note": "General church visiting hours per trawell.in."},
+  "P05": {"name": "Government Museum, Chennai", "intervals": [[9.5, 17]], "note": "Per trawell.in; closed Fridays (not modeled here)."},
+  "P06": {"name": "Guindy National Park", "intervals": [[9, 17.5]], "note": "Per Wikipedia; closed Tuesdays (not modeled here)."},
+  "P07": {"name": "Arignar Anna Zoological Park (Vandalur Zoo)", "intervals": [[9, 17]], "note": "Per Wikipedia; closed Tuesdays (not modeled here)."},
+  "P08": {"name": "Valluvar Kottam", "intervals": [[10, 20]], "note": "Per Chennai Tourism."},
+  "P09": {"name": "Birla Planetarium", "intervals": [[10, 17.75]], "note": "Facility hours; discrete showtimes fall within this window. Saturday night sky show (7-9 PM) not modeled as it is not a daily fact."},
+  "P10": {"name": "Semmozhi Poonga", "intervals": [[10, 19.5]], "note": "General visitor hours per YoMetro; closed Tuesdays (not modeled here)."},
+  "P11": {"name": "Elliot's Beach", "intervals": [[0, 24]], "note": "Open public beach, no gate/entry control."},
+  "P12": {"name": "Besant Nagar Beach", "intervals": [[0, 24]], "note": "Same physical beach as P11; open public beach."},
+  "P13": {"name": "DakshinaChitra", "intervals": [[10, 18]], "note": "Per official site (weekday hours used); closed Tuesdays (not modeled here)."},
+  "P14": {"name": "Cholamandal Artists' Village", "intervals": [[9.5, 18.5]], "note": "Per Chennai Tourism; open all 7 days."},
+  "P15": {"name": "Vivekananda House", "intervals": [[10, 12.5], [15, 19.25]], "note": "Split morning/evening sessions per IndianHoliday/Chennai Tourism."},
+  "P16": {"name": "Thousand Lights Mosque", "intervals": [[5.5, 21]], "note": "Per multiple travel sites; no formal midday closure."},
+  "P17": {"name": "Parthasarathy Temple", "intervals": [[6, 12], [16, 21]], "note": "Weekday schedule per GoTirupati/Trawell; midday closure gap."},
+  "P18": {"name": "Vadapalani Murugan Temple", "intervals": [[5, 12.5], [16, 21]], "note": "Per GoTirupati/DarshansBooking; midday closure gap."},
+  "P19": {"name": "Express Avenue", "intervals": [[10, 22]], "note": "Per Holidify/Rehlat; same hours every day."},
+  "P20": {"name": "MGM Dizzee World", "intervals": [[10.5, 18]], "note": "Weekday hours per official site (used over the slightly-off OSM tag); weekend/holiday closes 18:30, peak season later, not modeled here."}
+}
