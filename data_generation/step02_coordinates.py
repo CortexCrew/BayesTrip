@@ -38,15 +38,8 @@ def build() -> pd.DataFrame:
                 "lat": lat,
                 "lng": lng,
                 "source": source,
+                "geocode_query": query,
             }
-        )
-        log_evidence(
-            agent="step02_coordinates",
-            place_id=p["place_id"],
-            variable="coordinates",
-            evidence_text=f"lat={lat}, lng={lng}" + (f" for query {query!r}" if query else ""),
-            source=source,
-            source_url="https://nominatim.openstreetmap.org/ui/search.html?q=" + (query or p["name"]),
         )
         print(f"{p['place_id']} {p['name']}: {lat}, {lng}")
     return pd.DataFrame(rows)
@@ -54,7 +47,18 @@ def build() -> pd.DataFrame:
 
 def main() -> None:
     df = build()
-    write_sheet("07_Coordinates", df)
+
+    for r in df.itertuples():
+        log_evidence(
+            agent="step02_coordinates",
+            place_id=r.place_id,
+            variable="coordinates",
+            evidence_text=f"lat={r.lat}, lng={r.lng}" + (f" for query {r.geocode_query!r}" if r.geocode_query else ""),
+            source=r.source,
+            source_url="https://nominatim.openstreetmap.org/ui/search.html?q=" + (r.geocode_query or r.name),
+        )
+
+    write_sheet("07_Coordinates", df.drop(columns=["geocode_query"]))
     print(f"Wrote {len(df)} rows to 07_Coordinates")
 
 

@@ -69,15 +69,6 @@ def build() -> pd.DataFrame:
                 }
             )
 
-            log_evidence(
-                agent="step04_bn_cpt",
-                place_id=place_id,
-                variable=variable,
-                evidence_text=r["evidence_text"],
-                source=r["justification"],
-                source_url=r["source_url"],
-            )
-
     df = pd.DataFrame(out_rows)
     df = df.sort_values(["place_id", "variable", "state"]).reset_index(drop=True)
     return df
@@ -89,6 +80,16 @@ def main() -> None:
     sums = df.groupby(["place_id", "variable"])["probability"].sum()
     max_error = (sums - 1.0).abs().max()
     assert max_error < 1e-9, f"a (place, variable) group does not sum to 1 (max error {max_error})"
+
+    for r in df.itertuples():
+        log_evidence(
+            agent="step04_bn_cpt",
+            place_id=r.place_id,
+            variable=r.variable,
+            evidence_text=r.evidence_text,
+            source=r.justification,
+            source_url=r.source_url,
+        )
 
     write_sheet("03_BN_CPT", df)
     print(f"Wrote {len(df)} rows to 03_BN_CPT across {df['place_id'].nunique()} places "

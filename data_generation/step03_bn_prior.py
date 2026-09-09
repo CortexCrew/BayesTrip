@@ -94,15 +94,6 @@ def build() -> pd.DataFrame:
                 "match_method": poi["match_method"],
             }
         )
-
-        log_evidence(
-            agent="step03_bn_prior",
-            place_id=row.place_id,
-            variable="popularity",
-            evidence_text=f"OpenTripMap rate={rate} for POI {poi.get('name')!r} (xid={poi.get('xid')}), {poi['match_method']}",
-            source="OpenTripMap places/radius API",
-            source_url=f"https://opentripmap.com/en/card/{poi.get('xid')}" if poi.get("xid") else BASE_URL,
-        )
         print(f"{row.place_id} {row.name}: rate={rate} -> raw_score={raw_score} ({poi['match_method']})")
 
     df = pd.DataFrame(rows)
@@ -116,6 +107,17 @@ def build() -> pd.DataFrame:
 def main() -> None:
     df = build()
     assert abs(df["probability"].sum() - 1.0) < 1e-9, "probability does not sum to 1"
+
+    for r in df.itertuples():
+        log_evidence(
+            agent="step03_bn_prior",
+            place_id=r.place_id,
+            variable="popularity",
+            evidence_text=f"OpenTripMap rate={r.opentripmap_rate} for POI {r.opentripmap_name!r} (xid={r.opentripmap_xid}), {r.match_method}",
+            source="OpenTripMap places/radius API",
+            source_url=f"https://opentripmap.com/en/card/{r.opentripmap_xid}" if r.opentripmap_xid else BASE_URL,
+        )
+
     write_sheet("02_BN_Prior", df)
     print(f"Wrote {len(df)} rows to 02_BN_Prior (sums to {df['probability'].sum():.6f})")
 

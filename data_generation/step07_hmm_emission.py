@@ -86,14 +86,6 @@ def build() -> pd.DataFrame:
                 }
             )
 
-        log_evidence(
-            agent="step07_hmm_emission",
-            place_id=pid,
-            variable="opening_hours",
-            evidence_text=research["opening_hours_text"],
-            source=research["source"],
-            source_url=research["source_url"],
-        )
         print(f"{pid} {entry['name']}: {statuses}")
 
     return pd.DataFrame(rows)
@@ -104,6 +96,17 @@ def main() -> None:
     sums = df.groupby("place_id")["probability"].sum()
     max_error = (sums - 1.0).abs().max()
     assert max_error < 1e-9, f"a place's emission scores do not sum to 1 (max error {max_error})"
+
+    for pid, group in df.groupby("place_id"):
+        first = group.iloc[0]
+        log_evidence(
+            agent="step07_hmm_emission",
+            place_id=pid,
+            variable="opening_hours",
+            evidence_text=first["opening_hours_text"],
+            source=first["source"],
+            source_url=first["source_url"],
+        )
 
     write_sheet("06_HMM_Emission", df)
     print(f"Wrote {len(df)} rows to 06_HMM_Emission (max per-place sum error: {max_error:.2e})")

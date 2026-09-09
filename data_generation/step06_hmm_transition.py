@@ -36,15 +36,6 @@ def build() -> pd.DataFrame:
         for j, pid_j in enumerate(place_ids):
             row[pid_j] = raw_scores[j] / total if total > 0 else 0.0
         rows.append(row)
-
-        log_evidence(
-            agent="step06_hmm_transition",
-            place_id=pid_i,
-            variable="transition_row",
-            evidence_text=f"OSRM driving durations from {pid_i} to all other 19 places, row normalized to sum to 1",
-            source="OSRM public routing API (table service)",
-            source_url="https://router.project-osrm.org/table/v1/driving/",
-        )
         print(f"{pid_i} {names[pid_i]}: row done")
 
     return pd.DataFrame(rows)
@@ -54,6 +45,17 @@ def main() -> None:
     df = build()
     row_sums = df[[c for c in df.columns if c not in ("from_place_id", "from_name")]].sum(axis=1)
     assert (row_sums - 1.0).abs().max() < 1e-9, "a transition row does not sum to 1"
+
+    for r in df.itertuples():
+        log_evidence(
+            agent="step06_hmm_transition",
+            place_id=r.from_place_id,
+            variable="transition_row",
+            evidence_text=f"OSRM driving durations from {r.from_place_id} to all other 19 places, row normalized to sum to 1",
+            source="OSRM public routing API (table service)",
+            source_url="https://router.project-osrm.org/table/v1/driving/",
+        )
+
     write_sheet("05_HMM_Transition", df)
     print(f"Wrote {len(df)} rows to 05_HMM_Transition (max row-sum error: {(row_sums - 1.0).abs().max():.2e})")
 

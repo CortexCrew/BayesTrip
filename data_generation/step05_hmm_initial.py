@@ -34,14 +34,6 @@ def build() -> pd.DataFrame:
                 "pi": pi,
             }
         )
-        log_evidence(
-            agent="step05_hmm_initial",
-            place_id=row.place_id,
-            variable="travel_time_from_chennai_central",
-            evidence_text=f"OSRM driving duration = {travel_time:.1f}s from Chennai Central Railway Station",
-            source="OSRM public routing API (table service)",
-            source_url="https://router.project-osrm.org/table/v1/driving/",
-        )
         print(f"{row.place_id} {row.name}: {travel_time:.0f}s -> pi={pi:.4f}")
 
     return pd.DataFrame(rows)
@@ -50,6 +42,17 @@ def build() -> pd.DataFrame:
 def main() -> None:
     df = build()
     assert abs(df["pi"].sum() - 1.0) < 1e-9, "pi does not sum to 1"
+
+    for r in df.itertuples():
+        log_evidence(
+            agent="step05_hmm_initial",
+            place_id=r.place_id,
+            variable="travel_time_from_chennai_central",
+            evidence_text=f"OSRM driving duration = {r.travel_time_seconds:.1f}s from Chennai Central Railway Station",
+            source="OSRM public routing API (table service)",
+            source_url="https://router.project-osrm.org/table/v1/driving/",
+        )
+
     write_sheet("04_HMM_Initial", df)
     print(f"Wrote {len(df)} rows to 04_HMM_Initial (pi sums to {df['pi'].sum():.6f})")
 
