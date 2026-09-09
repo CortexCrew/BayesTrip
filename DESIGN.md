@@ -16,9 +16,19 @@ either a deterministic formula or a cited piece of evidence.
 
 ## 02_BN_Prior — formula
 
-*To be finalized when step 3 is implemented; will combine OpenTripMap's
-`rate` field with a log-scaled popularity term, normalized to sum to 1
-across all 20 places.*
+For each place, OpenTripMap's `places/radius` endpoint is queried
+around its already-geocoded coordinate to find the matching POI (exact
+or substring name match, else the nearest result) and read its `rate`
+field -- OpenTripMap's own POI-notability scale, 0-3 numeric plus a
+1h/2h/3h/7h tier for globally significant places. `rate` is mapped onto
+a single 0-7 ordinal score and normalized across all 20 places to sum
+to 1. Deterministic once `rate` is fetched; the only judgment call is
+picking the right POI out of the radius search results, which is
+logged per place in 08_Evidence either way.
+
+Pending: requires the OPENTRIPMAP_API_KEY environment variable
+(step03_bn_prior.py is implemented and ready to run once a key is
+available, but has not yet been executed).
 
 ## 03_BN_CPT — process
 
