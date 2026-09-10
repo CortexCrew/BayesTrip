@@ -1,47 +1,187 @@
-"""Builds 07_Coordinates: lat/lng per place via OSM Nominatim geocoding."""
+"""Builds 07_Coordinates: location/coordinate data per place via the Geoapify Geocoding API.
+
+Replaces the earlier OSM Nominatim-based implementation with Geoapify as the external
+provider -- same step in the pipeline, same 20 places and place_ids, different provider.
+
+For each place, the canonical name (data_generation/common/places.py) plus "Chennai,
+Tamil Nadu, India" is sent to Geoapify's /v1/geocode/search endpoint, biased and filtered
+to a 30km circle around Chennai Central so results are already constrained to the city.
+Candidate results are then deterministically re-ranked (Geoapify's own rank.confidence,
+then distance from Chennai Central as a tiebreak) and validated to be within
+MAX_DISTANCE_FROM_CENTER_KM of the city center -- a result outside that radius is
+rejected rather than accepted. If the primary query finds no valid result, a known
+alternate query (data_generation/common/places.py's `geocode_query` hints, reused from
+the earlier Nominatim step) is tried once as a fallback.
+
+If no query resolves to a validated Chennai result, this script does NOT invent
+coordinates: the row is written with empty latitude/longitude and confidence
+"needs_manual_review" so it can be caught by 09_Validation and fixed by hand.
+"""
+
+import os
+from datetime import datetime, timezone
+from math import atan2, cos, radians, sin, sqrt
 
 import pandas as pd
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv is optional; env vars can also be exported directly
+
 from data_generation.common.evidence import log_evidence
 from data_generation.common.http import get
+from data_generation.common.osrm import CHENNAI_CENTRAL
 from data_generation.common.places import CITY, PLACES
 from data_generation.common.workbook import write_sheet
 
-NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
+GEOAPIFY_API_KEY_ENV = "GE0APIFY_API_KEY"  # exact spelling as specified: GE0APIFY (zero, not letter O)
+GEOAPIFY_SEARCH_URL = "https://api.geoapify.com/v1/geocode/search"
+
+SEARCH_RADIUS_METERS = 30_000  # server-side filter: only consider POIs within 30km of Chennai Central
+MAX_DISTANCE_FROM_CENTER_KM = 40.0  # post-hoc validation threshold ("actually in/near Chennai")
+RESULT_LIMIT = 5
+
+NEEDS_REVIEW = "needs_manual_review"
 
 
-def geocode(query: str) -> dict:
-    response = get(NOMINATIM_URL, params={"q": query, "format": "json", "limit": 1})
-    results = response.json()
-    if not results:
-        raise ValueError(f"Nominatim returned no results for query: {query!r}")
-    return results[0]
+def _api_key() -> str:
+    key = os.environ.get(GEOAPIFY_API_KEY_ENV)
+    if not key:
+        raise SystemExit(
+            f"{GEOAPIFY_API_KEY_ENV} is not set. Get a free key at https://www.geoapify.com/ "
+            f"and set it in a .env file (see .env.example) or export it directly."
+        )
+    return key
+
+
+def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    r = 6371.0
+    phi1, phi2 = radians(lat1), radians(lat2)
+    dphi = radians(lat2 - lat1)
+    dlambda = radians(lon2 - lon1)
+    a = sin(dphi / 2) ** 2 + cos(phi1) * cos(phi2) * sin(dlambda / 2) ** 2
+    return 2 * r * atan2(sqrt(a), sqrt(1 - a))
+
+
+def _geocode(query: str, api_key: str) -> list[dict]:
+    response = get(
+        GEOAPIFY_SEARCH_URL,
+        params={
+            "text": query,
+            "apiKey": api_key,
+            "filter": f"circle:{CHENNAI_CENTRAL['lng']},{CHENNAI_CENTRAL['lat']},{SEARCH_RADIUS_METERS}",
+            "bias": f"proximity:{CHENNAI_CENTRAL['lng']},{CHENNAI_CENTRAL['lat']}",
+            "limit": RESULT_LIMIT,
+            "format": "json",
+        },
+    )
+    return response.json().get("results", [])
+
+
+def _select_best(results: list[dict]) -> dict | None:
+    """Deterministic re-ranking: validate each candidate is within
+    MAX_DISTANCE_FROM_CENTER_KM of Chennai Central, then pick the highest
+    rank.confidence, breaking ties by distance to the center. Returns None if no
+    candidate validates."""
+    candidates = []
+    for r in results:
+        lat, lon = r.get("lat"), r.get("lon")
+        if lat is None or lon is None:
+            continue
+        distance_km = _haversine_km(CHENNAI_CENTRAL["lat"], CHENNAI_CENTRAL["lng"], lat, lon)
+        if distance_km > MAX_DISTANCE_FROM_CENTER_KM:
+            continue
+        confidence = (r.get("rank") or {}).get("confidence", 0.0)
+        candidates.append((confidence, -distance_km, distance_km, r))
+
+    if not candidates:
+        return None
+
+    candidates.sort(key=lambda c: (c[0], c[1]), reverse=True)
+    best_confidence, _, best_distance_km, best_result = candidates[0]
+    return {"result": best_result, "confidence": best_confidence, "distance_km": best_distance_km}
+
+
+def _request_url_for_evidence(query: str) -> str:
+    # Same params as _geocode, minus the API key, so the exact request is traceable
+    # without leaking the key into the workbook or evidence log.
+    return (
+        f"{GEOAPIFY_SEARCH_URL}?text={query}"
+        f"&filter=circle:{CHENNAI_CENTRAL['lng']},{CHENNAI_CENTRAL['lat']},{SEARCH_RADIUS_METERS}"
+        f"&bias=proximity:{CHENNAI_CENTRAL['lng']},{CHENNAI_CENTRAL['lat']}&limit={RESULT_LIMIT}&format=json"
+    )
+
+
+def _resolve_place(place: dict, api_key: str) -> dict:
+    place_id, name = place["place_id"], place["name"]
+    queries = [f"{name}, {CITY}, Tamil Nadu, India"]
+    if place.get("geocode_query"):
+        queries.append(place["geocode_query"])
+
+    for attempt, query in enumerate(queries):
+        results = _geocode(query, api_key)
+        picked = _select_best(results)
+        if picked is None:
+            continue
+
+        r = picked["result"]
+        method = "primary query" if attempt == 0 else "fallback query"
+        return {
+            "place_id": place_id,
+            "place_name": name,
+            "search_query": query,
+            "formatted_address": r.get("formatted", ""),
+            "city": r.get("city", ""),
+            "state": r.get("state", ""),
+            "country": r.get("country", ""),
+            "latitude": r.get("lat"),
+            "longitude": r.get("lon"),
+            "source": "Geoapify Geocoding API",
+            "source_url": _request_url_for_evidence(query),
+            "retrieved_at": datetime.now(timezone.utc).isoformat(),
+            "confidence": picked["confidence"],
+            "justification": (
+                f"Selected via {method}: rank.confidence={picked['confidence']:.3f}, "
+                f"{picked['distance_km']:.2f}km from Chennai Central (within {MAX_DISTANCE_FROM_CENTER_KM}km "
+                f"validation threshold), geoapify place_id={r.get('place_id', 'n/a')}."
+            ),
+        }
+
+    # No query produced a validated result: do not invent coordinates.
+    last_query = queries[-1]
+    return {
+        "place_id": place_id,
+        "place_name": name,
+        "search_query": last_query,
+        "formatted_address": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "latitude": None,
+        "longitude": None,
+        "source": "Geoapify Geocoding API",
+        "source_url": _request_url_for_evidence(last_query),
+        "retrieved_at": datetime.now(timezone.utc).isoformat(),
+        "confidence": NEEDS_REVIEW,
+        "justification": (
+            f"No Geoapify result within {MAX_DISTANCE_FROM_CENTER_KM}km of Chennai Central for "
+            f"{len(queries)} quer{'y' if len(queries) == 1 else 'ies'} tried ({', '.join(queries)!r}). "
+            f"Coordinates intentionally left blank rather than guessed; needs manual review."
+        ),
+    }
 
 
 def build() -> pd.DataFrame:
+    api_key = _api_key()
     rows = []
-    for p in PLACES:
-        if "geocode_override" in p:
-            lat, lng = p["geocode_override"]
-            source = "OSM Overpass (name-substring search; not indexed by Nominatim)"
-            query = None
-        else:
-            query = p.get("geocode_query", f"{p['name']}, {CITY}, India")
-            result = geocode(query)
-            lat, lng = float(result["lat"]), float(result["lon"])
-            source = "OSM Nominatim"
-
-        rows.append(
-            {
-                "place_id": p["place_id"],
-                "name": p["name"],
-                "lat": lat,
-                "lng": lng,
-                "source": source,
-                "geocode_query": query,
-            }
-        )
-        print(f"{p['place_id']} {p['name']}: {lat}, {lng}")
+    for place in PLACES:
+        row = _resolve_place(place, api_key)
+        rows.append(row)
+        status = "OK" if row["latitude"] is not None else "NEEDS REVIEW"
+        print(f"{row['place_id']} {row['place_name']}: [{status}] {row['justification']}")
     return pd.DataFrame(rows)
 
 
@@ -53,13 +193,15 @@ def main() -> None:
             agent="step02_coordinates",
             place_id=r.place_id,
             variable="coordinates",
-            evidence_text=f"lat={r.lat}, lng={r.lng}" + (f" for query {r.geocode_query!r}" if r.geocode_query else ""),
+            evidence_text=r.justification,
             source=r.source,
-            source_url="https://nominatim.openstreetmap.org/ui/search.html?q=" + (r.geocode_query or r.name),
+            source_url=r.source_url,
         )
 
-    write_sheet("07_Coordinates", df.drop(columns=["geocode_query"]))
-    print(f"Wrote {len(df)} rows to 07_Coordinates")
+    write_sheet("07_Coordinates", df)
+
+    n_review = (df["confidence"] == NEEDS_REVIEW).sum()
+    print(f"Wrote {len(df)} rows to 07_Coordinates ({n_review} flagged {NEEDS_REVIEW})")
 
 
 if __name__ == "__main__":
