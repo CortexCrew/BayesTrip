@@ -32,10 +32,10 @@ def build() -> list[dict]:
     # 2. BN prior sums to 1
     if "02_BN_Prior" in sheets:
         prior = read_sheet("02_BN_Prior")
-        total = prior["probability"].sum()
+        total = prior["prior_probability"].sum()
         results.append(_check("02_BN_Prior sums to 1", abs(total - 1.0) < TOLERANCE, f"sum={total:.6f}"))
     else:
-        results.append(_check("02_BN_Prior sums to 1", False, "sheet not found (pending: needs OpenTripMap API key)"))
+        results.append(_check("02_BN_Prior sums to 1", False, "sheet not found"))
 
     # 3. Each CPT variable sums to 1 per place
     if "03_BN_CPT" in sheets:

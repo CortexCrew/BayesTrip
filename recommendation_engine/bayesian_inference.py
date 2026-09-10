@@ -53,7 +53,8 @@ def score_places(evidence: Evidence, prior: pd.DataFrame | None = None, cpt: pd.
         if state not in valid_states:
             raise ValueError(f"Unknown state {state!r} for variable {variable!r}; expected one of {sorted(valid_states)}")
 
-    scores = prior.set_index("place_id")["probability"].astype(float).copy()
+    prior_column = "prior_probability" if "prior_probability" in prior.columns else "probability"
+    scores = prior.set_index("place_id")[prior_column].astype(float).copy()
     names = prior.set_index("place_id")["name"] if "name" in prior.columns else prior.set_index("place_id")["place_name"]
 
     for variable, state in evidence_dict.items():

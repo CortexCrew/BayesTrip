@@ -8,27 +8,51 @@ either a deterministic formula or a cited piece of evidence.
 
 | Purpose | Source | Notes |
 |---|---|---|
-| Geocoding (lat/lng) | OSM Nominatim | Free, no key required |
-| Popularity signal | OpenTripMap API | `rate` (importance 1-7h) + Wikipedia extract, per place |
+| Geocoding (lat/lng, address) | Geoapify Geocoding API | Replaced OSM Nominatim; see step02_coordinates.py |
+| Popularity signal | Web research (Tripadvisor preferred, documented fallback otherwise) | Rating + review count, per place |
 | Travel time (point-to-point) | OSRM public routing API | Driving profile, free, no key required |
 | Opening hours | Overpass API (OSM `opening_hours` tag), web research fallback | Fallback logged in 08_Evidence |
 | Qualitative attributes (CPT) | Wikipedia, official tourism sites, travel guides | Extracted via structured JSON, see below |
 
 ## 02_BN_Prior — formula
 
-For each place, OpenTripMap's `places/radius` endpoint is queried
-around its already-geocoded coordinate to find the matching POI (exact
-or substring name match, else the nearest result) and read its `rate`
-field -- OpenTripMap's own POI-notability scale, 0-3 numeric plus a
-1h/2h/3h/7h tier for globally significant places. `rate` is mapped onto
-a single 0-7 ordinal score and normalized across all 20 places to sum
-to 1. Deterministic once `rate` is fetched; the only judgment call is
-picking the right POI out of the radius search results, which is
-logged per place in 08_Evidence either way.
+OpenTripMap (originally planned for both coordinates and popularity) is
+blocked (account email verification issue) and has been dropped
+entirely from this table -- Geoapify is not a substitute for popularity
+either, since it has no rating/review signal. Instead, popularity
+evidence (rating, review count) is gathered by a research pass: web
+search, preferring Tripadvisor's publicly visible rating/review count
+where a normal search/page-load surfaces it (no scraping, no bypassing
+paywalls or access restrictions), falling back to another reliable
+source (Holidify, Justdial, TripHobo, etc.) when Tripadvisor isn't
+accessible that way, with the fallback explicitly recorded. If no
+numeric rating/review count can be found anywhere, the fields are left
+null rather than invented -- raw evidence in
+`raw/popularity_research.json`.
 
-Pending: requires the OPENTRIPMAP_API_KEY environment variable
-(step03_bn_prior.py is implemented and ready to run once a key is
-available, but has not yet been executed).
+The research pass never computes a score. This is the separate,
+deterministic scoring pass, run over that raw evidence:
+
+```
+popularity_score_i =
+    rating_i * ln(review_count_i + 1)   if both rating_i and review_count_i are known
+    rating_i                             if only rating_i is known (no review-count multiplier --
+                                          NOT treated as review_count=1, which would silently
+                                          invent a number)
+    FLOOR_SCORE (= 1.0)                  if neither is known, so a place with no popularity
+                                          evidence still gets a small nonzero prior instead of
+                                          being zeroed out of the recommendation entirely
+```
+
+`P(place_i) = popularity_score_i / sum(popularity_score_all_places)`,
+normalized across all 20 places to sum to 1. The `ln(review_count + 1)`
+term rewards places with more reviews but with diminishing returns
+(a place with 50,000 reviews isn't treated as 50x "more popular" than
+one with 1,000); ratings are typically on a 0-5 scale across sources,
+so `rating * ln(review_count + 1)` keeps quality and volume on a
+comparable footing without either dominating. FLOOR_SCORE is a fixed,
+documented code constant -- not a fabricated rating -- applied only
+when no popularity evidence exists at all.
 
 ## 03_BN_CPT — process
 

@@ -1,125 +1,101 @@
-"""Builds 02_BN_Prior: P(Place) from OpenTripMap popularity data.
+"""Builds 02_BN_Prior: P(Place) from researched popularity evidence.
 
-For each place, OpenTripMap's `places/radius` endpoint is queried around its already
--geocoded coordinate (07_Coordinates) to find the matching POI and its `rate` field --
-OpenTripMap's own 1-7h "how notable is this place" scale. `rate` is mapped to a numeric
-score (RATE_SCALE below) and normalized across all 20 places to sum to 1.
+OpenTripMap (originally planned for this) is blocked, and isn't a rating/review source
+anyway -- popularity evidence here comes from a web-research pass (raw/popularity_research.json):
+for each place, rating and review_count were looked up via normal web search, preferring
+Tripadvisor's publicly visible numbers where a normal search/page-load surfaces them (no
+scraping, no bypassing access restrictions), falling back to another reliable source
+(recorded explicitly) when Tripadvisor isn't accessible that way. Places with no findable
+rating/review_count anywhere have both left null rather than invented.
 
-This is deterministic once the raw `rate` values are fetched: the only judgment call is
-picking the right POI out of the radius search results, which is done by exact/substring
-name match first, falling back to the nearest result if no name match is found (logged
-either way so the choice is auditable in 08_Evidence).
-
-Requires the OPENTRIPMAP_API_KEY environment variable (free key from opentripmap.io).
+This script is the separate, deterministic scoring pass over that raw evidence -- see
+DESIGN.md for the exact formula and its rationale. No LLM judgment happens here.
 """
 
-import os
+import json
+from math import log
+from pathlib import Path
 
 import pandas as pd
 
 from data_generation.common.evidence import log_evidence
-from data_generation.common.http import get
-from data_generation.common.workbook import read_sheet, write_sheet
+from data_generation.common.workbook import write_sheet
 
-BASE_URL = "https://api.opentripmap.com/0.1/en/places"
-SEARCH_RADIUS_METERS = 500
+RAW_RESEARCH_PATH = Path(__file__).resolve().parent / "raw" / "popularity_research.json"
 
-# OpenTripMap's `rate` field mixes a numeric scale (0-3) with a lettered "highest
-# importance" tier (1h/2h/3h/7h, used for globally notable places); mapped onto a
-# single ordinal scale here so it can be normalized into a popularity score.
-RATE_SCALE = {
-    "0": 0.0,
-    "1": 1.0,
-    "2": 2.0,
-    "3": 3.0,
-    "1h": 4.0,
-    "2h": 5.0,
-    "3h": 6.0,
-    "7h": 7.0,
-}
+FLOOR_SCORE = 1.0  # applied only when neither rating nor review_count is known for a place
 
 
-def _api_key() -> str:
-    key = os.environ.get("OPENTRIPMAP_API_KEY")
-    if not key:
-        raise SystemExit("OPENTRIPMAP_API_KEY is not set. Get a free key at https://opentripmap.io/product and export it.")
-    return key
+def load_raw() -> list[dict]:
+    with open(RAW_RESEARCH_PATH, encoding="utf-8") as f:
+        return json.load(f)
 
 
-def _find_poi(lat: float, lng: float, name: str, api_key: str) -> dict:
-    response = get(
-        f"{BASE_URL}/radius",
-        params={
-            "radius": SEARCH_RADIUS_METERS,
-            "lon": lng,
-            "lat": lat,
-            "limit": 15,
-            "apikey": api_key,
-            "format": "json",
-        },
-    )
-    candidates = response.json()
-    if not candidates:
-        raise ValueError(f"OpenTripMap returned no POIs within {SEARCH_RADIUS_METERS}m of {name!r} ({lat}, {lng})")
-
-    name_lower = name.lower()
-    for c in candidates:
-        c_name = (c.get("name") or "").lower()
-        if c_name and (c_name in name_lower or name_lower in c_name):
-            return c | {"match_method": "name substring match"}
-
-    # No name match: fall back to the nearest candidate (radius results are
-    # distance-sorted), which is still within SEARCH_RADIUS_METERS of the place.
-    return candidates[0] | {"match_method": "nearest fallback (no name match)"}
+def _popularity_score(rating: float | None, review_count: int | None) -> tuple[float, str]:
+    if rating is not None and review_count is not None:
+        score = rating * log(review_count + 1)
+        return score, f"rating({rating}) * ln(review_count({review_count}) + 1) = {score:.4f}"
+    if rating is not None:
+        return rating, f"rating only, no review_count evidence: score = rating = {rating}"
+    return FLOOR_SCORE, f"no rating or review_count evidence found: floor score = {FLOOR_SCORE}"
 
 
 def build() -> pd.DataFrame:
-    api_key = _api_key()
-    coords = read_sheet("07_Coordinates")
+    raw_rows = load_raw()
 
     rows = []
-    for row in coords.itertuples():
-        poi = _find_poi(row.lat, row.lng, row.name, api_key)
-        rate = str(poi.get("rate", "0"))
-        raw_score = RATE_SCALE.get(rate, 0.0)
-
+    for r in raw_rows:
+        score, score_note = _popularity_score(r["rating"], r["review_count"])
         rows.append(
             {
-                "place_id": row.place_id,
-                "name": row.name,
-                "opentripmap_xid": poi.get("xid"),
-                "opentripmap_name": poi.get("name"),
-                "opentripmap_rate": rate,
-                "raw_score": raw_score,
-                "match_method": poi["match_method"],
+                "place_id": r["place_id"],
+                "place_name": r["place_name"],
+                "rating": r["rating"],
+                "review_count": r["review_count"],
+                "popularity_score": score,
+                "score_formula": score_note,
+                "justification": r["justification"],
+                "evidence_text": r["evidence_text"],
+                "source": r["source"],
+                "source_url": r["source_url"],
+                "confidence": r["confidence"],
             }
         )
-        print(f"{row.place_id} {row.name}: rate={rate} -> raw_score={raw_score} ({poi['match_method']})")
 
     df = pd.DataFrame(rows)
-    total = df["raw_score"].sum()
-    if total <= 0:
-        raise ValueError("all OpenTripMap raw_scores are 0 -- cannot normalize into a prior")
-    df["probability"] = df["raw_score"] / total
-    return df
+    total = df["popularity_score"].sum()
+    df["prior_probability"] = df["popularity_score"] / total
+    return df.sort_values("place_id").reset_index(drop=True)
 
 
 def main() -> None:
     df = build()
-    assert abs(df["probability"].sum() - 1.0) < 1e-9, "probability does not sum to 1"
+    assert abs(df["prior_probability"].sum() - 1.0) < 1e-9, "prior_probability does not sum to 1"
 
     for r in df.itertuples():
         log_evidence(
             agent="step03_bn_prior",
             place_id=r.place_id,
             variable="popularity",
-            evidence_text=f"OpenTripMap rate={r.opentripmap_rate} for POI {r.opentripmap_name!r} (xid={r.opentripmap_xid}), {r.match_method}",
-            source="OpenTripMap places/radius API",
-            source_url=f"https://opentripmap.com/en/card/{r.opentripmap_xid}" if r.opentripmap_xid else BASE_URL,
+            evidence_text=r.evidence_text,
+            source=r.source,
+            source_url=r.source_url,
         )
 
-    write_sheet("02_BN_Prior", df)
-    print(f"Wrote {len(df)} rows to 02_BN_Prior (sums to {df['probability'].sum():.6f})")
+    output_columns = [
+        "place_id",
+        "place_name",
+        "rating",
+        "review_count",
+        "popularity_score",
+        "prior_probability",
+        "justification",
+        "source",
+        "source_url",
+        "confidence",
+    ]
+    write_sheet("02_BN_Prior", df[output_columns].assign(retrieved_at=pd.Timestamp.now(tz="UTC").isoformat()))
+    print(f"Wrote {len(df)} rows to 02_BN_Prior (sums to {df['prior_probability'].sum():.6f})")
 
 
 if __name__ == "__main__":
