@@ -33,17 +33,21 @@ PLACES = [
         "place_id": "P13",
         "name": "DakshinaChitra",
         "category": "Culture / Heritage",
-        # Not reliably resolvable by name via Geoapify either (every query tried
-        # returns a low-confidence city/district-level or unrelated match) -- no
-        # geocode_query override is set, so this place is expected to come back
-        # flagged needs_manual_review from step02_coordinates.
+        # Geoapify's OSM-sourced data spells this "Dakshin Chitra" (missing the 'a'
+        # before Chitra) rather than the canonical "DakshinaChitra" -- close enough to
+        # pass the fuzzy category-word check in step02_coordinates.py.
+        "geocode_query": "Dakshin Chitra, Muttukadu, Tamil Nadu, India",
     },
     {"place_id": "P14", "name": "Cholamandal Artists' Village", "category": "Art / Culture"},
     {
         "place_id": "P15",
         "name": "Vivekananda House",
         "category": "History / Heritage",
-        "geocode_query": "Vivekanandar Illam, Chennai, India",
+        # "Vivekanandar Illam" (its Tamil name, used for the earlier Nominatim step)
+        # returns no results under Geoapify. "Ice House" -- its historical name, from
+        # when the building stored ice imported from the US in the 1840s -- resolves
+        # correctly to the same building.
+        "geocode_query": ["Vivekanandar Illam, Chennai, India", "Ice House, Chennai, Tamil Nadu, India"],
     },
     {"place_id": "P16", "name": "Thousand Lights Mosque", "category": "Spiritual / Heritage"},
     {"place_id": "P17", "name": "Parthasarathy Temple", "category": "Spiritual / Heritage"},

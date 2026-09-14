@@ -26,6 +26,7 @@ coordinates: the row is written with empty latitude/longitude and confidence
 import os
 import re
 from datetime import datetime, timezone
+from difflib import SequenceMatcher
 from math import atan2, cos, radians, sin, sqrt
 
 import pandas as pd
@@ -57,6 +58,15 @@ MAX_DISTANCE_FROM_CENTER_KM = 40.0  # post-hoc validation threshold ("actually i
 # place's coordinate.
 MIN_CONFIDENCE = 0.5
 RESULT_LIMIT = 5
+
+# Fallback for the category-word check: some correct matches use a minor spelling/
+# transliteration variant of the category word (e.g. Geoapify's OSM-sourced "Dakshin
+# Chitra" for the canonical "DakshinaChitra") that won't appear as an exact substring.
+# Rather than accept any loose similarity (which would also let "House" slip through
+# against "College"), this only fires when the category word IS essentially the whole
+# place name (no exact substring match found) and compares it against the result's own
+# name field at a high similarity bar.
+FUZZY_CATEGORY_WORD_THRESHOLD = 0.9
 
 NEEDS_REVIEW = "needs_manual_review"
 
@@ -109,6 +119,24 @@ def _category_word(place_name: str) -> str | None:
     return word if len(word) >= 3 else None
 
 
+def _category_word_matches(category_word: str, result: dict) -> bool:
+    result_text = f"{result.get('name') or ''} {result.get('formatted') or ''}".lower()
+    if category_word in result_text:
+        return True
+
+    # Fuzzy fallback, only for single-word category words (i.e. the place's whole
+    # canonical name is one word, like "DakshinaChitra") against the result's own name
+    # field -- catches spelling/transliteration variants without loosening the check
+    # for multi-word names, where an exact substring match is expected and a fuzzy
+    # whole-string comparison would be misleadingly diluted by address noise anyway.
+    if " " in category_word:
+        return False
+    normalized_name = re.sub(r"[^a-z0-9]", "", (result.get("name") or "").lower())
+    if not normalized_name:
+        return False
+    return SequenceMatcher(None, category_word, normalized_name).ratio() >= FUZZY_CATEGORY_WORD_THRESHOLD
+
+
 def _select_best(results: list[dict], place_name: str | None = None) -> dict | None:
     """Deterministic re-ranking: validate each candidate is within
     MAX_DISTANCE_FROM_CENTER_KM of Chennai Central, at or above MIN_CONFIDENCE
@@ -129,10 +157,8 @@ def _select_best(results: list[dict], place_name: str | None = None) -> dict | N
         confidence = (r.get("rank") or {}).get("confidence", 0.0)
         if confidence < MIN_CONFIDENCE:
             continue
-        if category_word:
-            result_text = f"{r.get('name') or ''} {r.get('formatted') or ''}".lower()
-            if category_word not in result_text:
-                continue
+        if category_word and not _category_word_matches(category_word, r):
+            continue
         candidates.append((confidence, -distance_km, distance_km, r))
 
     if not candidates:
@@ -156,8 +182,10 @@ def _request_url_for_evidence(query: str) -> str:
 def _resolve_place(place: dict, api_key: str) -> dict:
     place_id, name = place["place_id"], place["name"]
     queries = [f"{name}, {CITY}, Tamil Nadu, India"]
-    if place.get("geocode_query"):
-        queries.append(place["geocode_query"])
+    fallback_queries = place.get("geocode_query", [])
+    if isinstance(fallback_queries, str):
+        fallback_queries = [fallback_queries]
+    queries.extend(fallback_queries)
 
     for attempt, query in enumerate(queries):
         results = _geocode(query, api_key)
