@@ -7,11 +7,16 @@ For each place, the canonical name (data_generation/common/places.py) plus "Chen
 Tamil Nadu, India" is sent to Geoapify's /v1/geocode/search endpoint, biased and filtered
 to a 30km circle around Chennai Central so results are already constrained to the city.
 Candidate results are then deterministically re-ranked (Geoapify's own rank.confidence,
-then distance from Chennai Central as a tiebreak) and validated to be within
-MAX_DISTANCE_FROM_CENTER_KM of the city center -- a result outside that radius is
-rejected rather than accepted. If the primary query finds no valid result, a known
-alternate query (data_generation/common/places.py's `geocode_query` hints, reused from
-the earlier Nominatim step) is tried once as a fallback.
+then distance from Chennai Central as a tiebreak) and validated against three checks:
+within MAX_DISTANCE_FROM_CENTER_KM of the city center, at or above MIN_CONFIDENCE
+(Geoapify falls back to a low-confidence city/district-level match when it can't
+resolve the actual POI -- e.g. "San Thome Basilica" once returned plain "Chennai" at
+confidence 0.25), and containing the place's category word (the last significant word
+of its canonical name, e.g. "Basilica", "House", "Temple" -- this catches same-area,
+similar-name mismatches that still pass at high confidence, such as Geoapify matching
+"Vivekananda House" to the unrelated "Vivekananda College"). If the primary query finds
+no valid result, a known alternate query (data_generation/common/places.py's
+`geocode_query` hints) is tried once as a fallback.
 
 If no query resolves to a validated Chennai result, this script does NOT invent
 coordinates: the row is written with empty latitude/longitude and confidence
@@ -19,6 +24,7 @@ coordinates: the row is written with empty latitude/longitude and confidence
 """
 
 import os
+import re
 from datetime import datetime, timezone
 from math import atan2, cos, radians, sin, sqrt
 
@@ -42,6 +48,14 @@ GEOAPIFY_SEARCH_URL = "https://api.geoapify.com/v1/geocode/search"
 
 SEARCH_RADIUS_METERS = 30_000  # server-side filter: only consider POIs within 30km of Chennai Central
 MAX_DISTANCE_FROM_CENTER_KM = 40.0  # post-hoc validation threshold ("actually in/near Chennai")
+
+# Geoapify falls back to a city/district-level match (result_type "city"/"suburb"/etc.,
+# match_type "match_by_city_or_disrict") when it can't resolve the actual named POI --
+# observed at confidence ~0.20-0.25 in practice, versus ~0.73-1.0 for genuine POI
+# matches. Rejecting anything below this floor turns "found nothing useful" into a
+# clean needs_manual_review instead of silently accepting the city center as the
+# place's coordinate.
+MIN_CONFIDENCE = 0.5
 RESULT_LIMIT = 5
 
 NEEDS_REVIEW = "needs_manual_review"
@@ -81,11 +95,29 @@ def _geocode(query: str, api_key: str) -> list[dict]:
     return response.json().get("results", [])
 
 
-def _select_best(results: list[dict]) -> dict | None:
+def _category_word(place_name: str) -> str | None:
+    """The last significant word of a place's canonical name (its category/type noun,
+    e.g. "Basilica", "House", "Temple", "Zoo"/"Park"), used as a cheap but effective
+    sanity check against same-area, similar-name mismatches. Parenthetical alt-names
+    and a trailing ", Chennai" are stripped first so they don't dominate the result."""
+    clean = re.sub(r"\([^)]*\)", "", place_name)
+    clean = re.sub(rf",?\s*{re.escape(CITY)}\s*$", "", clean, flags=re.IGNORECASE).strip()
+    words = re.findall(r"[A-Za-z']+", clean)
+    if not words:
+        return None
+    word = words[-1].lower()
+    return word if len(word) >= 3 else None
+
+
+def _select_best(results: list[dict], place_name: str | None = None) -> dict | None:
     """Deterministic re-ranking: validate each candidate is within
-    MAX_DISTANCE_FROM_CENTER_KM of Chennai Central, then pick the highest
-    rank.confidence, breaking ties by distance to the center. Returns None if no
-    candidate validates."""
+    MAX_DISTANCE_FROM_CENTER_KM of Chennai Central, at or above MIN_CONFIDENCE
+    (rejecting Geoapify's city/district-level fallback matches), and -- when
+    place_name is given -- contains that place's category word (see _category_word).
+    Among what remains, pick the highest rank.confidence, breaking ties by distance
+    to the center. Returns None if no candidate validates."""
+    category_word = _category_word(place_name) if place_name else None
+
     candidates = []
     for r in results:
         lat, lon = r.get("lat"), r.get("lon")
@@ -95,6 +127,12 @@ def _select_best(results: list[dict]) -> dict | None:
         if distance_km > MAX_DISTANCE_FROM_CENTER_KM:
             continue
         confidence = (r.get("rank") or {}).get("confidence", 0.0)
+        if confidence < MIN_CONFIDENCE:
+            continue
+        if category_word:
+            result_text = f"{r.get('name') or ''} {r.get('formatted') or ''}".lower()
+            if category_word not in result_text:
+                continue
         candidates.append((confidence, -distance_km, distance_km, r))
 
     if not candidates:
@@ -123,7 +161,7 @@ def _resolve_place(place: dict, api_key: str) -> dict:
 
     for attempt, query in enumerate(queries):
         results = _geocode(query, api_key)
-        picked = _select_best(results)
+        picked = _select_best(results, place_name=name)
         if picked is None:
             continue
 
@@ -168,7 +206,7 @@ def _resolve_place(place: dict, api_key: str) -> dict:
         "confidence": NEEDS_REVIEW,
         "justification": (
             f"No Geoapify result within {MAX_DISTANCE_FROM_CENTER_KM}km of Chennai Central for "
-            f"{len(queries)} quer{'y' if len(queries) == 1 else 'ies'} tried ({', '.join(queries)!r}). "
+            f"{len(queries)} quer{'y' if len(queries) == 1 else 'ies'} tried ({'; '.join(map(repr, queries))}). "
             f"Coordinates intentionally left blank rather than guessed; needs manual review."
         ),
     }

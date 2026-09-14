@@ -8,7 +8,10 @@ PLACES = [
         "place_id": "P04",
         "name": "San Thome Basilica",
         "category": "Spiritual / Heritage",
-        "geocode_query": "Santhome Cathedral, Chennai, India",
+        # "Santhome Cathedral, ..." (used for the earlier Nominatim step) resolves to
+        # the wrong POI (a school) under Geoapify; "St Thomas Basilica" is the query
+        # Geoapify matches correctly to the actual basilica.
+        "geocode_query": "St Thomas Basilica, Chennai, India",
     },
     {"place_id": "P05", "name": "Government Museum, Chennai", "category": "History & Heritage"},
     {"place_id": "P06", "name": "Guindy National Park", "category": "Nature"},
@@ -16,7 +19,10 @@ PLACES = [
         "place_id": "P07",
         "name": "Arignar Anna Zoological Park (Vandalur Zoo)",
         "category": "Nature / Family",
-        "geocode_query": "Vandalur Zoo",
+        # The parenthetical alt-name in the canonical name breaks Geoapify's parser
+        # (falls back to a city-level match); the plain name without parens resolves
+        # correctly to the actual zoo.
+        "geocode_query": "Arignar Anna Zoological Park, Vandalur, Chennai, Tamil Nadu, India",
     },
     {"place_id": "P08", "name": "Valluvar Kottam", "category": "History & Heritage"},
     {"place_id": "P09", "name": "Birla Planetarium", "category": "Science / Entertainment"},
@@ -27,9 +33,10 @@ PLACES = [
         "place_id": "P13",
         "name": "DakshinaChitra",
         "category": "Culture / Heritage",
-        # Not indexed by name in Nominatim; found via Overpass name-substring search
-        # against the OSM node tagged tourism=gallery near Muttukadu on ECR.
-        "geocode_override": (12.8225130, 80.2435254),
+        # Not reliably resolvable by name via Geoapify either (every query tried
+        # returns a low-confidence city/district-level or unrelated match) -- no
+        # geocode_query override is set, so this place is expected to come back
+        # flagged needs_manual_review from step02_coordinates.
     },
     {"place_id": "P14", "name": "Cholamandal Artists' Village", "category": "Art / Culture"},
     {
