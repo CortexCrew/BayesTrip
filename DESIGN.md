@@ -93,10 +93,29 @@ assigned an invented probability.
 
 ## 05_HMM_Transition — formula
 
-`score = 1 / travel_time_seconds`, normalized so each row sums to 1
-across all destinations. (Currently still built from the pre-Geoapify
-coordinates and pending a re-run against 07_Coordinates -- see
-04_HMM_Initial above for the now-current methodology once ported.)
+A[i][j] = P(S_t = place_j | S_(t-1) = place_i): the probability of
+moving to place_j immediately after visiting place_i, based on travel
+accessibility between the two -- distinct from 02_BN_Prior (popularity)
+and 04_HMM_Initial (first-stop accessibility from Chennai Central);
+this table never reads either.
+
+Coordinates come exclusively from 07_Coordinates (Geoapify). Self-
+transitions (place_i -> place_i) are excluded, matching this project's
+existing policy from the original wide-format implementation (which
+set A[i][i] = 0), so the table has 20 x 19 = 380 rows, one per ordered
+pair of distinct places. Distance and travel time for all pairs come
+from a single OSRM table-service call (`distance_duration_matrix`,
+shared with 04_HMM_Initial).
+
+```
+raw_transition_score(i, j) = 1 / (travel_time_min(i, j) + EPSILON)   [EPSILON = 0.01 min]
+transition_probability(i, j) = raw_transition_score(i, j) / sum_k(raw_transition_score(i, k))
+```
+
+normalized independently per from_id (over its 19 to_places), never
+across the full 380-row table at once. If OSRM cannot route a pair, no
+value is fabricated -- that pair is excluded from its from_id's
+normalization and flagged `needs_manual_review`.
 
 ## 06_HMM_Emission — formula
 

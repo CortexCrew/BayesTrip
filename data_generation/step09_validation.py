@@ -52,15 +52,14 @@ def build() -> list[dict]:
     else:
         results.append(_check("03_BN_CPT: each (place, variable) sums to 1", False, "sheet not found"))
 
-    # 4. Each HMM transition row sums to 1
+    # 4. Each from_id's transition_probability sums to 1
     if "05_HMM_Transition" in sheets:
         trans = read_sheet("05_HMM_Transition")
-        place_cols = [c for c in trans.columns if c not in ("from_place_id", "from_name")]
-        row_sums = trans[place_cols].sum(axis=1)
+        row_sums = trans.groupby("from_id")["transition_probability"].sum(min_count=1)
         max_err = (row_sums - 1.0).abs().max()
-        results.append(_check("05_HMM_Transition: each row sums to 1", max_err < TOLERANCE, f"max error={max_err:.2e}"))
+        results.append(_check("05_HMM_Transition: each from_id sums to 1", max_err < TOLERANCE, f"max error={max_err:.2e}"))
     else:
-        results.append(_check("05_HMM_Transition: each row sums to 1", False, "sheet not found"))
+        results.append(_check("05_HMM_Transition: each from_id sums to 1", False, "sheet not found"))
 
     # 5. Each place's emission sums to 1
     if "06_HMM_Emission" in sheets:
