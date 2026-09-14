@@ -71,13 +71,13 @@ def build() -> list[dict]:
     else:
         results.append(_check("06_HMM_Emission: each place sums to 1", False, "sheet not found"))
 
-    # 6. pi sums to 1
+    # 6. pi (initial_probability) sums to 1
     if "04_HMM_Initial" in sheets:
         initial = read_sheet("04_HMM_Initial")
-        total = initial["pi"].sum()
-        results.append(_check("04_HMM_Initial: pi sums to 1", abs(total - 1.0) < TOLERANCE, f"sum={total:.6f}"))
+        total = initial["initial_probability"].sum()
+        results.append(_check("04_HMM_Initial: initial_probability sums to 1", abs(total - 1.0) < TOLERANCE, f"sum={total:.6f}"))
     else:
-        results.append(_check("04_HMM_Initial: pi sums to 1", False, "sheet not found"))
+        results.append(_check("04_HMM_Initial: initial_probability sums to 1", False, "sheet not found"))
 
     return results
 

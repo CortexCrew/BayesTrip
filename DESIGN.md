@@ -66,10 +66,37 @@ number the source did not give. A separate, deterministic normalization
 pass (plain code) then rescales each place's per-variable values to sum
 to 1. No LLM output is treated as final without that normalization pass.
 
-## 04_HMM_Initial / 05_HMM_Transition — formula
+## 04_HMM_Initial — formula
 
-`score = 1 / travel_time_seconds`, normalized (initial: sum to 1 across
-all places; transition: each row sums to 1 across all destinations).
+pi(place) represents first-stop *accessibility* from a fixed starting
+location (Chennai Central Railway Station), not destination popularity
+-- that is 02_BN_Prior's job (P(Place)); the two are deliberately kept
+separate and this step never reads the BN prior.
+
+Coordinates come exclusively from 07_Coordinates (Geoapify Geocoding
+API, the finalized coordinate source for this project -- the old OSM
+Nominatim data is no longer used anywhere). Road distance and travel
+time from Chennai Central to each place are both read from the same
+OSRM public routing table service response, so distance and time are
+never silently mixed from different sources (e.g. straight-line vs.
+road).
+
+```
+raw_accessibility_score_i = 1 / (travel_time_min_i + EPSILON)   [EPSILON = 0.01 min]
+pi_i = raw_accessibility_score_i / sum_j(raw_accessibility_score_j)
+```
+
+Deterministic once travel times are fetched; if OSRM cannot find a
+route to a place, no value is fabricated -- that place is excluded
+from the normalization and flagged `needs_manual_review` rather than
+assigned an invented probability.
+
+## 05_HMM_Transition — formula
+
+`score = 1 / travel_time_seconds`, normalized so each row sums to 1
+across all destinations. (Currently still built from the pre-Geoapify
+coordinates and pending a re-run against 07_Coordinates -- see
+04_HMM_Initial above for the now-current methodology once ported.)
 
 ## 06_HMM_Emission — formula
 
