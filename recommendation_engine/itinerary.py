@@ -39,9 +39,9 @@ def build_itinerary(place_sequence: list[str]) -> list[ItineraryStop]:
                 slot=slot,
                 time_range=SLOT_TIMES[slot],
                 place_id=place_id,
-                name=row["name"],
-                lat=float(row["lat"]),
-                lng=float(row["lng"]),
+                name=row["place_name"],
+                lat=float(row["latitude"]),
+                lng=float(row["longitude"]),
             )
         )
     return stops
