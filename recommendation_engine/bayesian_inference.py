@@ -1,11 +1,3 @@
-"""Bayesian posterior scoring over places given visitor evidence.
-
-Score(Pi) is proportional to P(Pi) * prod_k P(Ek | Pi), where Ek ranges over the
-observed evidence variables (Age, Budget, Interest, Travel Type, Weather). The raw
-scores are normalized across all places to form a proper posterior, and the Top-5
-places by posterior probability are selected for the HMM stage.
-"""
-
 from dataclasses import dataclass
 
 import pandas as pd

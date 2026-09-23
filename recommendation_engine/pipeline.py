@@ -1,6 +1,3 @@
-"""End-to-end recommendation pipeline: evidence -> Bayesian posterior -> Top-5 ->
-HMM/Viterbi -> timed itinerary. Ties together bayesian_inference, hmm_viterbi and
-itinerary; each of those stays independently usable and testable."""
 
 from recommendation_engine.bayesian_inference import Evidence, top_n
 from recommendation_engine.hmm_viterbi import decode_sequence

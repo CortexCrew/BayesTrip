@@ -1,29 +1,3 @@
-"""Builds 05_HMM_Transition: HMM transition probability A[i][j] = P(S_t = place_j |
-S_(t-1) = place_i) -- the probability of moving to place_j immediately after visiting
-place_i, based on travel accessibility between the two. This is a distinct concept from
-02_BN_Prior (P(Place), destination popularity) and 04_HMM_Initial (pi(place),
-first-stop accessibility from Chennai Central) -- this script never reads either of
-those and only cares about place-to-place movement.
-
-Coordinates come exclusively from 07_Coordinates (Geoapify Geocoding API, the finalized
-coordinate source for this project) -- the old OSM Nominatim data is no longer used
-anywhere. Distance and travel time for every ordered pair come from a single OSRM table
--service call (common/osrm.py's distance_duration_matrix, added in the 04_HMM_Initial
-step and reused here unchanged) rather than 400 individual requests.
-
-Self-transitions (place_i -> place_i) are excluded, matching this project's existing
-policy (the prior wide-format implementation set A[i][i] = 0 rather than giving a place
-any probability of transitioning to itself) -- so this table has 20 x 19 = 380 rows, one
-per ordered pair of DISTINCT places, and each from_id's 19 to_id rows are normalized to
-sum to 1 (never all 400 pairs at once).
-
-Formula (deterministic, no LLM judgment), independently per from_id:
-
-    raw_transition_score(i, j) = 1 / (travel_time_min(i, j) + EPSILON)
-    transition_probability(i, j) = raw_transition_score(i, j) / sum_k(raw_transition_score(i, k))
-
-where the sum is only over the 19 valid to_places k != i that OSRM could route to.
-"""
 
 from datetime import datetime, timezone
 

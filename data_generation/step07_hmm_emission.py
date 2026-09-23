@@ -1,17 +1,4 @@
-"""Builds 06_HMM_Emission: per-place suitability for Morning/Afternoon/Evening.
 
-Time slots are fixed as Morning 06:00-12:00, Afternoon 12:00-17:00, Evening 17:00-21:00.
-Opening hours per place were researched (raw/opening_hours_research.json, free text with
-sources) and hand-extracted into structured daily intervals (raw/opening_hours.json).
-This script is the deterministic scoring pass over those structured intervals:
-
-  - slot fully covered by an open interval  -> 1.0 (fully open)
-  - slot has partial overlap with an open interval -> 0.5 (partially open)
-  - slot has no overlap at all -> 0.02 (closed floor; never a hard 0, so Viterbi can
-    still transition through this state instead of permanently zeroing it out)
-
-Scores are then normalized per place across the 3 slots to sum to 1.
-"""
 
 import json
 from pathlib import Path

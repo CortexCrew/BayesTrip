@@ -1,16 +1,3 @@
-"""Builds 02_BN_Prior: P(Place) from researched popularity evidence.
-
-OpenTripMap (originally planned for this) is blocked, and isn't a rating/review source
-anyway -- popularity evidence here comes from a web-research pass (raw/popularity_research.json):
-for each place, rating and review_count were looked up via normal web search, preferring
-Tripadvisor's publicly visible numbers where a normal search/page-load surfaces them (no
-scraping, no bypassing access restrictions), falling back to another reliable source
-(recorded explicitly) when Tripadvisor isn't accessible that way. Places with no findable
-rating/review_count anywhere have both left null rather than invented.
-
-This script is the separate, deterministic scoring pass over that raw evidence -- see
-DESIGN.md for the exact formula and its rationale. No LLM judgment happens here.
-"""
 
 import json
 from math import log

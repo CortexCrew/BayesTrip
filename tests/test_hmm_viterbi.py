@@ -1,13 +1,18 @@
+import itertools
+
+import numpy as np
 import pandas as pd
 import pytest
 
 from recommendation_engine.hmm_viterbi import (
     TIME_SLOTS,
+    _position_time_slots,
     _restrict_emission,
     _restrict_initial,
     _restrict_transition,
     decode_sequence,
     viterbi,
+    viterbi_unique_sequence,
 )
 
 STATES = ["X", "Y"]
@@ -144,5 +149,96 @@ def test_decode_sequence_works_on_real_project_data():
 
     place_ids = [p["place_id"] for p in PLACES[:5]]
     sequence = decode_sequence(place_ids)
-    assert len(sequence) == len(TIME_SLOTS)
-    assert all(pid in place_ids for pid in sequence)
+    # 1: exactly 5 destinations. 2/4: all unique, none repeated. 3: exactly the
+    # requested Top-5 set, in some order.
+    assert len(sequence) == len(place_ids)
+    assert len(set(sequence)) == len(place_ids)
+    assert sorted(sequence) == sorted(place_ids)
+
+
+# ---------------------------------------------------------------------------
+# viterbi_unique_sequence: the Held-Karp-style constrained decoder that replaces
+# plain viterbi() for itinerary decoding, so every Top-N place is visited exactly
+# once (an ordered permutation) instead of allowing a revisit.
+# ---------------------------------------------------------------------------
+
+
+def test_position_time_slots_matches_the_documented_five_stop_pattern():
+    assert _position_time_slots(5) == ["Morning", "Morning", "Afternoon", "Afternoon", "Evening"]
+    assert _position_time_slots(3) == TIME_SLOTS
+    assert _position_time_slots(1) == ["Morning"]
+
+
+def test_viterbi_unique_sequence_returns_a_permutation_of_all_states():
+    states = ["A", "B", "C", "D"]
+    pi = pd.Series([0.25] * 4, index=states)
+    A = pd.DataFrame(1.0 / 3, index=states, columns=states)
+    for s in states:
+        A.loc[s, s] = 0.0
+    slots = _position_time_slots(4)
+    B = pd.DataFrame(0.25, index=states, columns=slots)
+
+    result = viterbi_unique_sequence(pi, A, B, slots)
+    assert len(result) == 4
+    assert sorted(result) == states  # every state present exactly once
+    assert len(set(result)) == 4  # no repeats
+
+
+def test_viterbi_unique_sequence_does_not_revisit_like_plain_viterbi_would():
+    # Constructed so that plain viterbi() (free to revisit) would pick a path that
+    # returns to a previously-visited state, but the unique-sequence decoder must
+    # not: state X is by far the best emission match for BOTH observations, and the
+    # transition matrix doesn't penalize revisiting it.
+    states = ["X", "Y"]
+    pi = pd.Series([0.5, 0.5], index=states)
+    A = pd.DataFrame([[0.5, 0.5], [0.5, 0.5]], index=states, columns=states)  # indifferent to staying vs. switching
+    B = pd.DataFrame({"obs1": [0.99, 0.01], "obs2": [0.99, 0.01]}, index=states)  # X dominates both observations
+
+    plain_path = viterbi(pi, A, B, ["obs1", "obs2"])
+    assert plain_path == ["X", "X"]  # confirms the constraint is actually needed here
+
+    unique_path = viterbi_unique_sequence(pi, A, B, ["obs1", "obs2"])
+    assert sorted(unique_path) == states
+    assert len(set(unique_path)) == 2
+
+
+def test_viterbi_unique_sequence_matches_brute_force_optimum():
+    # Ground-truth check: compare the DP's chosen permutation against an exhaustive
+    # search over all 120 orderings of 5 states, using the exact same (positional)
+    # probability semantics -- proves the Held-Karp DP and its backpointers are
+    # actually finding the true joint-probability maximum, not just a plausible one.
+    states = ["A", "B", "C", "D", "E"]
+    rng = np.random.default_rng(7)
+
+    pi_vals = rng.random(5)
+    pi = pd.Series(pi_vals / pi_vals.sum(), index=states)
+
+    A_vals = rng.random((5, 5))
+    np.fill_diagonal(A_vals, 0.0)
+    A = pd.DataFrame(A_vals, index=states, columns=states)
+    A = A.div(A.sum(axis=1), axis=0)
+
+    slots = _position_time_slots(5)
+    B = pd.DataFrame(rng.random((5, 5)), index=states, columns=slots)
+
+    result = viterbi_unique_sequence(pi, A, B, slots)
+
+    state_pos = {s: i for i, s in enumerate(states)}
+    B_vals = B.values
+    best_seq, best_prob = None, -1.0
+    for perm in itertools.permutations(states):
+        prob = pi[perm[0]] * B_vals[state_pos[perm[0]], 0]
+        for t in range(1, len(perm)):
+            prob *= A.loc[perm[t - 1], perm[t]] * B_vals[state_pos[perm[t]], t]
+        if prob > best_prob:
+            best_prob, best_seq = prob, list(perm)
+
+    assert result == best_seq
+
+
+def test_viterbi_unique_sequence_rejects_mismatched_position_slots_length():
+    pi = pd.Series([0.5, 0.5], index=STATES)
+    A = pd.DataFrame([[0.0, 1.0], [1.0, 0.0]], index=STATES, columns=STATES)
+    B = pd.DataFrame({"obs1": [0.5, 0.5], "obs2": [0.5, 0.5]}, index=STATES)
+    with pytest.raises(ValueError, match="position_slots length"):
+        viterbi_unique_sequence(pi, A, B, ["obs1"])

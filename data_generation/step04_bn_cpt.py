@@ -1,17 +1,3 @@
-"""Builds 03_BN_CPT: P(attribute_value | place) for Age, Budget, Interest, Travel Type
-and Weather.
-
-The raw evidence in raw/cpt_research.json was produced by a research pass (web_search
-against Wikipedia, official tourism sites and travel guides) that assigned each
-(place, variable, state) a raw_score in [0, 1] together with an evidence_text and a
-justification that explicitly distinguishes an explicit source claim ("Source states: ...")
-from a judgment call drawn from the place's general description ("Inferred from
-description: ..."). That research pass never computed a probability itself.
-
-This script is the separate, deterministic normalization pass: for each place and each
-variable, it rescales the raw_score values across that variable's states so they sum to
-exactly 1. No LLM judgment happens here -- it is plain arithmetic over the raw scores.
-"""
 
 import json
 from pathlib import Path

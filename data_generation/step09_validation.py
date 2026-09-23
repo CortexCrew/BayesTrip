@@ -1,9 +1,3 @@
-"""Runs automated PASS/FAIL checks on every table in BayesTrip_Data.xlsx.
-
-This step re-derives every sum itself rather than trusting the assertions each
-generating script already made -- it is the final, independent check across the
-whole workbook.
-"""
 
 import sys
 

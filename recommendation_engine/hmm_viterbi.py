@@ -1,17 +1,3 @@
-"""HMM over the Top-5 recommended places, decoded with Viterbi to produce a visiting
-sequence.
-
-Hidden state = which place is being visited; observations = the fixed time-of-day
-sequence [Morning, Afternoon, Evening]. The full 20-place initial / transition /
-emission tables (04/05/06) are restricted to the Top-5 place_ids and re-normalized,
-since a same-day itinerary only ever moves between the recommended places.
-
-04_HMM_Initial and 05_HMM_Transition are long/row-format tables (one row per place, and
-one row per ordered (from_id, to_id) pair, respectively) -- this module converts them
-into the pi Series / A DataFrame the Viterbi recurrence itself operates on, but the
-source tables stay long-format; nothing here writes back to them. 06_HMM_Emission was
-already long-format (place_id, slot, probability) and is read the same way as before.
-"""
 
 import numpy as np
 import pandas as pd
@@ -19,6 +5,20 @@ import pandas as pd
 from data_generation.common.workbook import read_sheet
 
 TIME_SLOTS = ["Morning", "Afternoon", "Evening"]
+
+
+def _position_time_slots(n: int) -> list[str]:
+    """Maps n chronological itinerary positions onto the existing 3 emission time
+    slots, distributing them as evenly as possible in slot order (earlier slots get
+    any remainder) -- no new emission data is invented, every position just reuses
+    one of the existing Morning/Afternoon/Evening probabilities. For the project's
+    real case (n=5): [Morning, Morning, Afternoon, Afternoon, Evening]."""
+    base, extra = divmod(n, len(TIME_SLOTS))
+    slots = []
+    for i, slot in enumerate(TIME_SLOTS):
+        count = base + (1 if i < extra else 0)
+        slots.extend([slot] * count)
+    return slots
 
 
 def _restrict_initial(initial: pd.DataFrame, place_ids: list[str]) -> pd.Series:
@@ -99,15 +99,6 @@ def _restrict_emission(emission: pd.DataFrame, place_ids: list[str], observation
 
 
 def viterbi(pi: pd.Series, A: pd.DataFrame, B: pd.DataFrame, observations: list[str]) -> list[str]:
-    """Standard log-space Viterbi. pi: Series indexed by state. A: DataFrame [state, state].
-    B: DataFrame [state, observation]. Returns the most likely state sequence.
-
-    delta_1(j) = pi_j * B_j(O_1)
-    delta_t(j) = B_j(O_t) * max_i [delta_(t-1)(i) * A_ij]   for t > 1
-
-    with backpointers psi recording the argmax at each step, so the optimal sequence
-    is reconstructed by backtracking from argmax_j delta_T(j).
-    """
     states = list(pi.index)
     n_states = len(states)
     n_obs = len(observations)
@@ -134,14 +125,90 @@ def viterbi(pi: pd.Series, A: pd.DataFrame, B: pd.DataFrame, observations: list[
     return [states[i] for i in path]
 
 
+def viterbi_unique_sequence(pi: pd.Series, A: pd.DataFrame, B: pd.DataFrame, position_slots: list[str]) -> list[str]:
+   
+    states = list(pi.index)
+    n = len(states)
+    if len(position_slots) != n:
+        raise ValueError(f"position_slots length ({len(position_slots)}) must equal the number of states ({n})")
+    if B.shape[1] != n:
+        raise ValueError(f"B has {B.shape[1]} columns but expected {n} (one per position_slots entry)")
+
+    log_pi = np.log(pi.values + 1e-300)
+    log_A = np.log(A.values + 1e-300)
+    log_B = np.log(B.values + 1e-300)  # positional: column t is the t-th position_slots entry
+
+    full_mask = (1 << n) - 1
+    NEG_INF = float("-inf")
+
+    delta = [[NEG_INF] * n for _ in range(1 << n)]
+    psi = [[-1] * n for _ in range(1 << n)]
+
+    for j in range(n):
+        mask = 1 << j
+        delta[mask][j] = log_pi[j] + log_B[j, 0]
+
+    for mask in range(1, 1 << n):
+        popcount = bin(mask).count("1")
+        if popcount < 2:
+            continue
+        position_index = popcount - 1
+        for j in range(n):
+            if not (mask & (1 << j)):
+                continue
+            prev_mask = mask & ~(1 << j)
+            best_val, best_i = NEG_INF, -1
+            for i in range(n):
+                if i == j or not (prev_mask & (1 << i)) or delta[prev_mask][i] == NEG_INF:
+                    continue
+                val = delta[prev_mask][i] + log_A[i, j]
+                if val > best_val:
+                    best_val, best_i = val, i
+            if best_i == -1:
+                continue
+            delta[mask][j] = best_val + log_B[j, position_index]
+            psi[mask][j] = best_i
+
+    best_final, best_j = NEG_INF, -1
+    for j in range(n):
+        if delta[full_mask][j] > best_final:
+            best_final, best_j = delta[full_mask][j], j
+
+    if best_j == -1:
+        raise ValueError(
+            "No valid full-visitation ordering found across the given states -- check pi/A/B "
+            "for zero-probability entries that block every possible ordering"
+        )
+
+    sequence_idx = []
+    mask, j = full_mask, best_j
+    while True:
+        sequence_idx.append(j)
+        prev_j = psi[mask][j]
+        mask &= ~(1 << j)
+        if prev_j == -1:
+            break
+        j = prev_j
+    sequence_idx.reverse()
+
+    return [states[i] for i in sequence_idx]
+
+
 def decode_sequence(place_ids: list[str], observations: list[str] | None = None) -> list[str]:
-    observations = observations or TIME_SLOTS
+    """Returns the highest-probability ORDERED PERMUTATION of place_ids -- each place
+    visited exactly once -- via viterbi_unique_sequence(). If observations isn't
+    given, itinerary positions are auto-mapped onto the existing emission time slots
+    via _position_time_slots(len(place_ids))."""
+    position_slots = observations or _position_time_slots(len(place_ids))
+    if len(position_slots) != len(place_ids):
+        raise ValueError(f"observations length ({len(position_slots)}) must equal place_ids length ({len(place_ids)})")
+
     initial = read_sheet("04_HMM_Initial")
     transition = read_sheet("05_HMM_Transition")
     emission = read_sheet("06_HMM_Emission")
 
     pi = _restrict_initial(initial, place_ids)
     A = _restrict_transition(transition, place_ids)
-    B = _restrict_emission(emission, place_ids, observations)
+    B = _restrict_emission(emission, place_ids, position_slots)
 
-    return viterbi(pi, A, B, observations)
+    return viterbi_unique_sequence(pi, A, B, position_slots)

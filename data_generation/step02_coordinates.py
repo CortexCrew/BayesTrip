@@ -1,27 +1,3 @@
-"""Builds 07_Coordinates: location/coordinate data per place via the Geoapify Geocoding API.
-
-Replaces the earlier OSM Nominatim-based implementation with Geoapify as the external
-provider -- same step in the pipeline, same 20 places and place_ids, different provider.
-
-For each place, the canonical name (data_generation/common/places.py) plus "Chennai,
-Tamil Nadu, India" is sent to Geoapify's /v1/geocode/search endpoint, biased and filtered
-to a 30km circle around Chennai Central so results are already constrained to the city.
-Candidate results are then deterministically re-ranked (Geoapify's own rank.confidence,
-then distance from Chennai Central as a tiebreak) and validated against three checks:
-within MAX_DISTANCE_FROM_CENTER_KM of the city center, at or above MIN_CONFIDENCE
-(Geoapify falls back to a low-confidence city/district-level match when it can't
-resolve the actual POI -- e.g. "San Thome Basilica" once returned plain "Chennai" at
-confidence 0.25), and containing the place's category word (the last significant word
-of its canonical name, e.g. "Basilica", "House", "Temple" -- this catches same-area,
-similar-name mismatches that still pass at high confidence, such as Geoapify matching
-"Vivekananda House" to the unrelated "Vivekananda College"). If the primary query finds
-no valid result, a known alternate query (data_generation/common/places.py's
-`geocode_query` hints) is tried once as a fallback.
-
-If no query resolves to a validated Chennai result, this script does NOT invent
-coordinates: the row is written with empty latitude/longitude and confidence
-"needs_manual_review" so it can be caught by 09_Validation and fixed by hand.
-"""
 
 import os
 import re

@@ -1,27 +1,3 @@
-"""Builds 04_HMM_Initial: HMM initial probability pi(place) -- how accessible each of
-the 20 destinations is as the FIRST stop of an itinerary, starting from Chennai Central
-Railway Station. This is a separate concept from 02_BN_Prior (P(Place), destination
-popularity): pi is about first-stop accessibility, not preference or popularity, and
-this script never reads or touches the BN prior.
-
-Coordinates come exclusively from 07_Coordinates (Geoapify Geocoding API, finalized in
-the coordinate-agent steps) -- the old OSM Nominatim coordinates are no longer used
-anywhere in the project. Road distance and travel time from Chennai Central to each
-place are computed via OSRM's public routing table service, which is already used
-elsewhere in this pipeline (04/05 originally, and still used by 05_HMM_Transition).
-
-Formula (deterministic, no LLM judgment):
-
-    raw_accessibility_score_i = 1 / (travel_time_min_i + EPSILON)
-    pi_i = raw_accessibility_score_i / sum_j(raw_accessibility_score_j)
-
-EPSILON prevents division by zero and is negligible next to any real travel time.
-Travel time (not straight-line or road distance alone) is used as the accessibility
-measure, matching the OSRM-based methodology already established for
-05_HMM_Transition, so the two tables use a consistent, non-mixed distance source; road
-distance in km is also recorded per place for traceability, from the same OSRM
-response, not a different (e.g. straight-line) calculation.
-"""
 
 from datetime import datetime, timezone
 

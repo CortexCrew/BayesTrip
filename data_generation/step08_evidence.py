@@ -1,10 +1,4 @@
-"""Builds 08_Evidence: one row per fact used anywhere in the pipeline.
 
-Every step that pulls a fact from an external source or from web research logs a row
-to data/evidence_log.jsonl as it runs (see common/evidence.py). This script just
-consolidates that append-only log into the Evidence sheet -- it does not fetch or
-derive anything itself.
-"""
 
 import pandas as pd
 
