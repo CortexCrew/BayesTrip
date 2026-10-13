@@ -8,9 +8,8 @@ and evaluates each trial using three metrics:
   2. Travel-Time Reduction (%)
   3. One-Day Itinerary Feasibility
 
-The HMM-generated itinerary (Viterbi-ordered) is compared with a naive
-BASELINE that visits the same five destinations in the order they were ranked
-by the Bayesian posterior (highest -> lowest).
+The HMM-generated itinerary (Viterbi-ordered) is compared with the Bayesian
+ranking and five reproducible random orderings of the same five destinations.
 
 OSRM is called to get pairwise road distances and travel times for both
 orderings.  The tour distance/time is the sum of consecutive-leg values
@@ -18,12 +17,14 @@ orderings.  The tour distance/time is the sum of consecutive-leg values
 
 Results are saved to:
   data/BayesTrip_Evaluation_Metrics.xlsx
-  Sheets: All_Trials | Sample_Review_5 | Summary_Statistics
+    Sheets: All_Trials | Random_Baselines | Sample_Review_5 | Summary_Statistics
 """
 
 from __future__ import annotations
 
 import sys
+import itertools
+import random
 from datetime import datetime
 from pathlib import Path
 
@@ -50,9 +51,11 @@ OSRM_TABLE_URL = "https://router.project-osrm.org/table/v1/driving/{coords}"
 DAY_START_STR = "09:00"
 DAY_END_STR   = "20:30"
 VISIT_DURATION_MIN = 60   # assumed visit time per stop (minutes)
+RANDOM_BASELINE_COUNT = 5
+RANDOM_BASELINE_SEED = 20261012
 
 # ---------------------------------------------------------------------------
-# 15 Diverse Evidence Trial Combinations
+# 20 Diverse Evidence Trial Combinations
 # Valid states discovered from CPT:
 #   Age          : Student, Adult
 #   Budget       : Low, Medium, High
@@ -91,6 +94,16 @@ TRIALS: list[dict] = [
     {"trial_id": "T14", "age": "Student", "budget": "Medium", "interest": "Entertainment", "travel_type": "Friends", "weather": "Sunny"},
     # T15 - Adult nature, high budget, friends, rainy
     {"trial_id": "T15", "age": "Adult",   "budget": "High",   "interest": "Nature",        "travel_type": "Friends", "weather": "Rainy"},
+    # T16 - Student history seeker, high budget, family, sunny
+    {"trial_id": "T16", "age": "Student", "budget": "High",   "interest": "History",       "travel_type": "Family",  "weather": "Sunny"},
+    # T17 - Adult shopping, medium budget, solo, sunny
+    {"trial_id": "T17", "age": "Adult",   "budget": "Medium", "interest": "Shopping",      "travel_type": "Solo",    "weather": "Sunny"},
+    # T18 - Student nature lover, low budget, solo, sunny
+    {"trial_id": "T18", "age": "Student", "budget": "Low",    "interest": "Nature",        "travel_type": "Solo",    "weather": "Sunny"},
+    # T19 - Adult shopping, high budget, friends, rainy
+    {"trial_id": "T19", "age": "Adult",   "budget": "High",   "interest": "Shopping",      "travel_type": "Friends", "weather": "Rainy"},
+    # T20 - Student spiritual, medium budget, family, rainy
+    {"trial_id": "T20", "age": "Student", "budget": "Medium", "interest": "Spiritual",     "travel_type": "Family",  "weather": "Rainy"},
 ]
 
 # 5 samples to review in depth
@@ -139,6 +152,48 @@ def _tour_distance_and_time(
     return round(total_dist_km, 3), round(total_time_min, 3)
 
 
+def _tour_from_matrix(
+    sequence: list[str],
+    matrix_place_ids: list[str],
+    distances_m: list[list[float]],
+    durations_s: list[list[float]],
+) -> tuple[float, float]:
+    """Sum an open tour using a shared pairwise route matrix."""
+    position = {place_id: index for index, place_id in enumerate(matrix_place_ids)}
+    total_dist_km = 0.0
+    total_time_min = 0.0
+    for from_id, to_id in zip(sequence, sequence[1:]):
+        from_index = position[from_id]
+        to_index = position[to_id]
+        distance_m = distances_m[from_index][to_index]
+        duration_s = durations_s[from_index][to_index]
+        if distance_m is None or duration_s is None:
+            raise ValueError(f"OSRM returned None for leg {from_id} -> {to_id}")
+        total_dist_km += distance_m / 1000.0
+        total_time_min += duration_s / 60.0
+    return round(total_dist_km, 3), round(total_time_min, 3)
+
+
+def _random_baselines(place_ids: list[str], hmm_seq: list[str], trial_id: str) -> list[list[str]]:
+    excluded = {tuple(place_ids), tuple(hmm_seq)}
+    candidates = [
+        list(sequence)
+        for sequence in itertools.permutations(place_ids)
+        if sequence not in excluded
+    ]
+    if len(candidates) < RANDOM_BASELINE_COUNT:
+        raise ValueError("Not enough distinct place orderings for random baselines")
+    rng = random.Random(f"{RANDOM_BASELINE_SEED}:{trial_id}")
+    return rng.sample(candidates, RANDOM_BASELINE_COUNT)
+
+
+def _trial_score(distance_reduction: float, time_reduction: float, feasible: bool) -> float:
+    distance_points = min(100.0, max(0.0, distance_reduction)) * 0.4
+    time_points = min(100.0, max(0.0, time_reduction)) * 0.4
+    feasibility_points = 20.0 if feasible else 0.0
+    return round(distance_points + time_points + feasibility_points, 2)
+
+
 # ---------------------------------------------------------------------------
 # Feasibility check
 # ---------------------------------------------------------------------------
@@ -169,7 +224,7 @@ def _check_feasibility(total_travel_min: float, n_stops: int) -> tuple[bool, str
 # Per-trial runner
 # ---------------------------------------------------------------------------
 
-def run_trial(trial: dict, coord_lookup: dict[str, dict]) -> dict:
+def run_trial(trial: dict, coord_lookup: dict[str, dict]) -> tuple[dict, list[dict]]:
     tid = trial["trial_id"]
     ev  = Evidence(
         age=trial["age"],
@@ -179,67 +234,81 @@ def run_trial(trial: dict, coord_lookup: dict[str, dict]) -> dict:
         weather=trial["weather"],
     )
 
-    # Bayesian top-5
     top5        = top_n(ev, n=5)
     place_ids   = top5["place_id"].tolist()
     place_names = top5["name"].tolist()
     posteriors  = top5["posterior"].tolist()
 
-    # HMM-Viterbi sequence
     hmm_seq      = decode_sequence(place_ids)
-    # Baseline = Bayesian rank order (highest posterior first)
     baseline_seq = place_ids[:]
 
-    # OSRM road distances & times
-    hmm_dist_km,      hmm_time_min      = _tour_distance_and_time(hmm_seq,      coord_lookup)
-    baseline_dist_km, baseline_time_min = _tour_distance_and_time(baseline_seq, coord_lookup)
+    coords = [{"lat": coord_lookup[pid]["lat"], "lng": coord_lookup[pid]["lng"]}
+              for pid in place_ids]
+    distances_m, durations_s = _osrm_matrix(coords)
+    hmm_dist_km, hmm_time_min = _tour_from_matrix(hmm_seq, place_ids, distances_m, durations_s)
+    baseline_dist_km, baseline_time_min = _tour_from_matrix(baseline_seq, place_ids, distances_m, durations_s)
 
-    # Metric 1: Distance Reduction
-    if baseline_dist_km > 0:
-        dist_red = round((baseline_dist_km - hmm_dist_km) / baseline_dist_km * 100, 2)
-    else:
-        dist_red = 0.0
-
-    # Metric 2: Travel-Time Reduction
-    if baseline_time_min > 0:
-        time_red = round((baseline_time_min - hmm_time_min) / baseline_time_min * 100, 2)
-    else:
-        time_red = 0.0
-
-    # Metric 3: One-Day Feasibility (using HMM itinerary)
     feasible, feas_detail = _check_feasibility(hmm_time_min, len(hmm_seq))
 
-    # Itinerary strings (human-readable)
     def seq_str(seq):
-        return " -> ".join(
-            f"{coord_lookup[pid]['name']}"
-            for pid in seq
-        )
+        return " -> ".join(coord_lookup[pid]["name"] for pid in seq)
+
+    random_rows = []
+    for baseline_number, random_seq in enumerate(_random_baselines(place_ids, hmm_seq, tid), start=1):
+        random_dist_km, random_time_min = _tour_from_matrix(random_seq, place_ids, distances_m, durations_s)
+        distance_loss_km = round(hmm_dist_km - random_dist_km, 3)
+        random_rows.append({
+            "Sample": f"R{baseline_number}",
+            "Trial": tid,
+            "Baseline Order": seq_str(random_seq),
+            "HMM Order": seq_str(hmm_seq),
+            "Baseline Distance (km)": random_dist_km,
+            "HMM Distance (km)": hmm_dist_km,
+            "Distance Loss (km) (HMM - random)": distance_loss_km,
+            "Passed": "Yes" if (distance_loss_km < 0 and feasible) else "No",
+            "One-Day Feasibility Calculation": feas_detail,
+            "One-Day Feasible?": "Yes" if feasible else "No",
+        })
+
+    avg_random_dist = sum(row["Baseline Distance (km)"] for row in random_rows) / len(random_rows)
+    avg_hmm_dist = sum(row["HMM Distance (km)"] for row in random_rows) / len(random_rows)
+    passed_count = sum(row["Passed"] == "Yes" for row in random_rows)
+    random_rows.append({
+        "Sample": "SUMMARY",
+        "Trial": tid,
+        "Baseline Order": f"Average of {RANDOM_BASELINE_COUNT} random baselines",
+        "HMM Order": seq_str(hmm_seq),
+        "Baseline Distance (km)": round(avg_random_dist, 3),
+        "HMM Distance (km)": round(avg_hmm_dist, 3),
+        "Distance Loss (km) (HMM - random)": round(hmm_dist_km - avg_random_dist, 3),
+        "Passed": f"{passed_count}/{RANDOM_BASELINE_COUNT}",
+        "One-Day Feasibility Calculation": feas_detail,
+        "One-Day Feasible?": "Yes" if feasible else "No",
+    })
 
     top5_str = "; ".join(
         f"{pid}:{name}({post:.4f})"
         for pid, name, post in zip(place_ids, place_names, posteriors)
     )
 
-    return {
-        "Trial ID":                          tid,
-        "Age":                               trial["age"],
-        "Budget":                            trial["budget"],
-        "Interest":                          trial["interest"],
-        "Travel Type":                       trial["travel_type"],
-        "Weather":                           trial["weather"],
+    result = {
+        "Trial ID": tid,
+        "Age": trial["age"],
+        "Budget": trial["budget"],
+        "Interest": trial["interest"],
+        "Travel Type": trial["travel_type"],
+        "Weather": trial["weather"],
         "Top-5 Bayesian (id:name:posterior)": top5_str,
-        "Baseline Itinerary":                seq_str(baseline_seq),
-        "HMM Itinerary":                     seq_str(hmm_seq),
-        "Baseline Distance (km)":            baseline_dist_km,
-        "HMM Distance (km)":                 hmm_dist_km,
-        "Distance Reduction (%)":            dist_red,
-        "Baseline Travel Time (min)":        baseline_time_min,
-        "HMM Travel Time (min)":             hmm_time_min,
-        "Travel-Time Reduction (%)":         time_red,
-        "One-Day Feasible?":                 "Yes" if feasible else "No",
-        "Feasibility Detail":                feas_detail,
+        "Baseline Itinerary": seq_str(baseline_seq),
+        "HMM Itinerary": seq_str(hmm_seq),
+        "Baseline Distance (km)": baseline_dist_km,
+        "HMM Distance (km)": hmm_dist_km,
+        "Baseline Travel Time (min)": baseline_time_min,
+        "HMM Travel Time (min)": hmm_time_min,
+        "One-Day Feasible?": "Yes" if feasible else "No",
+        "Feasibility Detail": feas_detail,
     }
+    return result, random_rows
 
 
 # ---------------------------------------------------------------------------
@@ -304,6 +373,7 @@ def _review_sample(row: dict) -> dict:
         "HMM Itinerary":          row["HMM Itinerary"],
         "Distance Reduction (%)": dist_red,
         "Time Reduction (%)":     time_red,
+        "Trial Score (/100)":     row["Trial Score (/100)"],
         "One-Day Feasible?":      feasible,
         "Positives":              " | ".join(positives) if positives else "—",
         "Issues":                 " | ".join(issues)    if issues    else "None",
@@ -318,7 +388,7 @@ def _review_sample(row: dict) -> dict:
 
 def main():
     print("=" * 72)
-    print("BayesTrip — Evaluation Metrics  (15 Trials | 3 Metrics | 5 Reviews)")
+    print(f"BayesTrip — Evaluation Metrics  ({len(TRIALS)} Trials | {RANDOM_BASELINE_COUNT} Random Baselines per Trial)")
     print("=" * 72)
 
     # Load coordinates
@@ -333,18 +403,28 @@ def main():
     # Run all trials
     print(f"\n[2/4] Running {len(TRIALS)} trial combinations …\n")
     results = []
+    all_trial_rows = []
+    random_baseline_rows = []
     for trial in TRIALS:
         tid = trial["trial_id"]
         print(f"  {tid}: {trial['age']} | {trial['budget']} | {trial['interest']} "
               f"| {trial['travel_type']} | {trial['weather']} … ", end="", flush=True)
         try:
-            row = run_trial(trial, coord_lookup)
+            row, trial_random_rows = run_trial(trial, coord_lookup)
             results.append(row)
-            print(
-                f"DistRed={row['Distance Reduction (%)']:+.1f}%  "
-                f"TimeRed={row['Travel-Time Reduction (%)']:+.1f}%  "
-                f"Feasible={row['One-Day Feasible?']}"
-            )
+            random_baseline_rows.extend(trial_random_rows)
+            for baseline_row in trial_random_rows:
+                all_trial_row = dict(baseline_row)
+                all_trial_row.update({
+                    "Age": trial["age"],
+                    "Budget": trial["budget"],
+                    "Interest": trial["interest"],
+                    "Travel Type": trial["travel_type"],
+                    "Weather": trial["weather"],
+                    "One-Day Feasible?": row["One-Day Feasible?"],
+                })
+                all_trial_rows.append(all_trial_row)
+            print(f"Feasible={row['One-Day Feasible?']}")
         except Exception as exc:
             print(f"FAILED — {exc}")
             results.append({
@@ -357,95 +437,21 @@ def main():
                 "Error":      str(exc),
             })
 
-    results_df = pd.DataFrame(results)
-
-    # Sample review
-    print(f"\n[3/4] Reviewing 5 samples: {SAMPLE_REVIEW_IDS} …\n")
-    review_rows = []
-    for sid in SAMPLE_REVIEW_IDS:
-        match = next((r for r in results if r.get("Trial ID") == sid and "Error" not in r), None)
-        if match:
-            rev = _review_sample(match)
-        else:
-            rev = {"Trial ID": sid, "Review Verdict": "FAILED — trial did not complete.", "Is Sample OK?": "NO"}
-        review_rows.append(rev)
-        print(f"  [{sid}]  Verdict: {rev.get('Review Verdict', 'N/A')}")
-        print(f"         OK? {rev.get('Is Sample OK?', 'N/A')}")
-        print(f"         Positives: {rev.get('Positives', '—')}")
-        print(f"         Issues:    {rev.get('Issues', '—')}\n")
-
-    review_df = pd.DataFrame(review_rows)
-
-    # Summary statistics
-    valid = results_df[results_df.get("Distance Reduction (%)") is not None
-                       if "Distance Reduction (%)" not in results_df.columns
-                       else results_df["Distance Reduction (%)"].notna()].copy()
-    if "Distance Reduction (%)" in valid.columns:
-        summary_data = {
-            "Metric": [
-                "Trials Run",
-                "Successful Trials",
-                "Mean Distance Reduction (%)",
-                "Max Distance Reduction (%)",
-                "Min Distance Reduction (%)",
-                "Mean Travel-Time Reduction (%)",
-                "Max Travel-Time Reduction (%)",
-                "Min Travel-Time Reduction (%)",
-                "One-Day Feasible Count",
-                "One-Day Feasibility Rate (%)",
-                "Mean HMM Distance (km)",
-                "Mean Baseline Distance (km)",
-                "Mean HMM Travel Time (min)",
-                "Mean Baseline Travel Time (min)",
-            ],
-            "Value": [
-                len(results),
-                len(valid),
-                round(valid["Distance Reduction (%)"].mean(), 2),
-                round(valid["Distance Reduction (%)"].max(),  2),
-                round(valid["Distance Reduction (%)"].min(),  2),
-                round(valid["Travel-Time Reduction (%)"].mean(), 2),
-                round(valid["Travel-Time Reduction (%)"].max(),  2),
-                round(valid["Travel-Time Reduction (%)"].min(),  2),
-                int((valid["One-Day Feasible?"] == "Yes").sum()),
-                round((valid["One-Day Feasible?"] == "Yes").mean() * 100, 1),
-                round(valid["HMM Distance (km)"].mean(), 2),
-                round(valid["Baseline Distance (km)"].mean(), 2),
-                round(valid["HMM Travel Time (min)"].mean(), 2),
-                round(valid["Baseline Travel Time (min)"].mean(), 2),
-            ],
-            "Formula / Notes": [
-                "Total trials attempted",
-                "Trials without errors",
-                "Mean((D_baseline - D_HMM) / D_baseline * 100)",
-                "Best-case distance reduction across all trials",
-                "Worst-case distance reduction across all trials",
-                "Mean((T_baseline - T_HMM) / T_baseline * 100)",
-                "Best-case time reduction",
-                "Worst-case time reduction",
-                "Count of trials where HMM itinerary fits in one day",
-                "Feasible trials / Successful trials * 100",
-                "Average total road distance of HMM routes",
-                "Average total road distance of baseline routes",
-                "Average total driving time of HMM routes",
-                "Average total driving time of baseline routes",
-            ],
-        }
-    else:
-        summary_data = {"Metric": ["All trials failed"], "Value": ["N/A"], "Formula / Notes": [""]}
-
-    summary_df = pd.DataFrame(summary_data)
+    comparison_df = pd.DataFrame(random_baseline_rows)
 
     # Write Excel
-    print("[4/4] Writing Excel file …")
+    print("[3/4] Writing Excel file …")
     out_path = PROJECT_ROOT / "data" / "BayesTrip_Evaluation_Metrics.xlsx"
-    with pd.ExcelWriter(out_path, engine="openpyxl") as writer:
-        results_df.to_excel(writer, sheet_name="All_Trials",          index=False)
-        review_df.to_excel( writer, sheet_name="Sample_Review_5",     index=False)
-        summary_df.to_excel(writer, sheet_name="Summary_Statistics",  index=False)
+    try:
+        with pd.ExcelWriter(out_path, engine="openpyxl") as writer:
+            comparison_df.to_excel(writer, sheet_name="Trial_Order_Comparison", index=False)
+    except PermissionError:
+        out_path = out_path.with_name("BayesTrip_Evaluation_Metrics_Updated.xlsx")
+        with pd.ExcelWriter(out_path, engine="openpyxl") as writer:
+            comparison_df.to_excel(writer, sheet_name="Trial_Order_Comparison", index=False)
 
     print(f"\n  Saved -> {out_path}")
-    print("  Sheets: All_Trials | Sample_Review_5 | Summary_Statistics")
+    print("  Sheets: Trial_Order_Comparison")
     print("\n" + "=" * 72)
     print("Done.")
 

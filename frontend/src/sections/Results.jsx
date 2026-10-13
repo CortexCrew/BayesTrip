@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, Polyline, ZoomControl, useMap } from 'react-leaflet'
 import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import SectionTransition from '../components/SectionTransition'
 import GlassCard from '../components/GlassCard'
 import MagneticButton from '../components/MagneticButton'
@@ -19,39 +20,67 @@ function formatDistance(meters) {
   return (meters / 1000).toFixed(2) + ' km'
 }
 
-/* ── Custom map marker ───────────────────────────────────────── */
-function createPulsingIcon(color = '#ffa726') {
+function createRouteIcon(number, type, selected) {
   return L.divIcon({
-    className: '',
-    html: `
-      <div style="
-        width: 14px; height: 14px; background: ${color}; border-radius: 50%;
-        box-shadow: 0 0 12px ${color}88, 0 0 24px ${color}44;
-        animation: timelinePulse 2s ease-in-out infinite;
-      "></div>
-    `,
-    iconSize: [14, 14],
-    iconAnchor: [7, 7],
+    className: 'bayestrip-marker-shell',
+    html: `<span class="route-marker route-marker--${type}${selected ? ' is-selected' : ''}">${number}</span>`,
+    iconSize: [36, 36],
+    iconAnchor: [18, 18],
   })
 }
 
-/* ── Map auto-fit to markers ─────────────────────────────────── */
+/* ── Map controls and route framing ──────────────────────────── */
 function FitBounds({ positions }) {
   const map = useMap()
+  const boundsKey = positions.map(point => point.join(',')).join(';')
+
   useEffect(() => {
     if (positions.length > 0) {
-      const bounds = L.latLngBounds(positions.map(p => [p.lat, p.lng]))
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 14 })
+      map.fitBounds(L.latLngBounds(positions), {
+        paddingTopLeft: [32, 142],
+        paddingBottomRight: [32, 48],
+        maxZoom: 14,
+        animate: true,
+      })
     }
-  }, [positions, map])
+  }, [boundsKey, map])
   return null
 }
 
-/* ── FlyTo on selection ──────────────────────────────────────── */
+function ResetView({ positions }) {
+  const map = useMap()
+  const boundsKey = positions.map(point => point.join(',')).join(';')
+
+  return (
+    <button
+      type="button"
+      className="map-reset-button"
+      aria-label="Reset map to show the full route"
+      title="Reset route view"
+      onClick={() => {
+        if (positions.length > 0) {
+          map.fitBounds(L.latLngBounds(positions), {
+            paddingTopLeft: [32, 142],
+            paddingBottomRight: [32, 48],
+            maxZoom: 14,
+            animate: true,
+          })
+        }
+      }}
+    >
+      <svg viewBox="0 0 20 20" aria-hidden="true">
+        <path d="M4 8a6.5 6.5 0 1 1-.1 4M4 4v4h4" />
+      </svg>
+    </button>
+  )
+}
+
 function FlyTo({ lat, lng }) {
   const map = useMap()
   useEffect(() => {
-    if (lat && lng) map.flyTo([lat, lng], 15, { duration: 1.2 })
+    if (Number.isFinite(lat) && Number.isFinite(lng)) {
+      map.flyTo([lat, lng], 15, { duration: 0.8 })
+    }
   }, [lat, lng, map])
   return null
 }
@@ -64,9 +93,18 @@ export default function Results({ data }) {
 
   useEffect(() => {
     if (!data || !data.itinerary) return
-    const allPositions = data.itinerary.filter(s => s.lat && s.lng)
-    if (allPositions.length < 2) return
-    
+    const allPositions = data.itinerary.filter(
+      stop => Number.isFinite(Number(stop.lat)) && Number.isFinite(Number(stop.lng))
+    )
+    setRouteData(null)
+    setSelectedPlace(null)
+    if (allPositions.length < 2) {
+      setRouteLoading(false)
+      setRouteError(true)
+      return
+    }
+
+    const controller = new AbortController()
     setRouteLoading(true)
     setRouteError(null)
 
@@ -74,7 +112,7 @@ export default function Results({ data }) {
     const coords = allPositions.map(p => `${p.lng},${p.lat}`).join(';')
     const url = `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`
 
-    fetch(url)
+    fetch(url, { signal: controller.signal })
       .then(res => {
         if (!res.ok) throw new Error("HTTP error " + res.status)
         return res.json()
@@ -95,12 +133,16 @@ export default function Results({ data }) {
         }
       })
       .catch(err => {
-        console.error("OSRM Routing Error:", err)
-        setRouteError(true)
+        if (err.name !== 'AbortError') {
+          console.error('OSRM Routing Error:', err)
+          setRouteError(true)
+        }
       })
       .finally(() => {
-        setRouteLoading(false)
+        if (!controller.signal.aborted) setRouteLoading(false)
       })
+
+    return () => controller.abort()
   }, [data]) // Re-run when new trip data comes in
 
   if (!data) {
@@ -128,7 +170,10 @@ export default function Results({ data }) {
 
   const { top5, itinerary } = data
   const maxPosterior = Math.max(...top5.map(d => d.posterior))
-  const allPositions = itinerary.filter(s => s.lat && s.lng)
+  const allPositions = itinerary.filter(
+    stop => Number.isFinite(Number(stop.lat)) && Number.isFinite(Number(stop.lng))
+  )
+  const fitPositions = routeData?.path || allPositions.map(stop => [stop.lat, stop.lng])
 
   return (
     <SectionTransition id="results" variant="warm">
@@ -248,127 +293,119 @@ export default function Results({ data }) {
       </div>
 
       {/* ── Interactive Map ──────────────────────────────────── */}
-      <div style={{ marginTop: '48px' }}>
+      <div className="route-map-section">
         <div className="section-header" style={{ marginBottom: '16px' }}>
-          <div className="section-label" style={{ color: '#ffa726' }}>ROUTE MAP</div>
+          <div className="section-label">ROUTE MAP</div>
+          <h2 className="section-title">Your journey, mapped</h2>
+          <p className="section-subtitle">A road-by-road view of your HMM-optimized Chennai itinerary.</p>
         </div>
-        <div className="map-container" style={{ position: 'relative' }}>
-          {(routeData || routeLoading || routeError) && (
-            <div style={{
-              position: 'absolute',
-              top: '16px',
-              left: '60px',
-              zIndex: 1000,
-              background: 'rgba(10,10,15,0.85)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,167,38,0.3)',
-              borderRadius: '12px',
-              padding: '16px 24px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-              pointerEvents: 'none'
-            }}>
-              {routeLoading && (
-                <div style={{ fontFamily: "'Orbitron', sans-serif", color: '#8888aa', fontSize: '0.8rem' }}>
-                  ⏳ Calculating route...
+        <div className="map-container">
+          <div className="route-stats" aria-live="polite">
+            {routeLoading ? (
+              <div className="route-status"><span className="route-status-dot" />Calculating road route…</div>
+            ) : routeError ? (
+              <div className="route-status route-status--error">Road route unavailable. Stops are still shown.</div>
+            ) : routeData && (
+              <>
+                <div className="route-stat">
+                  <span className="route-stat-icon route-stat-icon--stops" aria-hidden="true">
+                    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.5" /><circle cx="10" cy="10" r="2" /></svg>
+                  </span>
+                  <span className="route-stat-copy"><span className="route-stat-label">Stops</span><strong>{routeData.stops}</strong></span>
                 </div>
-              )}
-              {routeError && (
-                <div style={{ fontFamily: "'Orbitron', sans-serif", color: '#ff4444', fontSize: '0.8rem' }}>
-                  ❌ Route calculation failed.
+                <div className="route-stat">
+                  <span className="route-stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" /><path d="M10 6v4l2.7 1.8" /></svg>
+                  </span>
+                  <span className="route-stat-copy"><span className="route-stat-label">Driving time</span><strong>{formatDuration(routeData.duration)}</strong></span>
                 </div>
-              )}
-              {routeData && !routeLoading && (
-                <div style={{ display: 'flex', gap: '24px' }}>
-                  <div>
-                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.65rem', color: '#8888aa', letterSpacing: '0.1em', marginBottom: '4px' }}>STOPS</div>
-                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '1.1rem', color: '#e8e8e8', fontWeight: 600 }}>{routeData.stops}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.65rem', color: '#8888aa', letterSpacing: '0.1em', marginBottom: '4px' }}>DRIVING TIME</div>
-                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '1.1rem', color: '#ffa726', fontWeight: 600 }}>{formatDuration(routeData.duration)}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.65rem', color: '#8888aa', letterSpacing: '0.1em', marginBottom: '4px' }}>DISTANCE</div>
-                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '1.1rem', color: '#00f0ff', fontWeight: 600 }}>{formatDistance(routeData.distance)}</div>
-                  </div>
+                <div className="route-stat">
+                  <span className="route-stat-icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20"><path d="M3 14.5 7.2 5l2.8 6 2-3 5 6.5z" /><path d="M3 16h14" /></svg>
+                  </span>
+                  <span className="route-stat-copy"><span className="route-stat-label">Distance</span><strong>{formatDistance(routeData.distance)}</strong></span>
                 </div>
-              )}
-            </div>
-          )}
+              </>
+            )}
+          </div>
+
           <MapContainer
             center={[13.06, 80.24]}
             zoom={12}
-            scrollWheelZoom={false}
+            scrollWheelZoom
+            zoomControl={false}
             style={{ width: '100%', height: '100%' }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            <FitBounds positions={allPositions} />
+            <ZoomControl position="topright" />
+            <FitBounds positions={fitPositions} />
+            <ResetView positions={fitPositions} />
             {selectedPlace && <FlyTo lat={selectedPlace.lat} lng={selectedPlace.lng} />}
 
-            {/* Route Polyline (OSRM or Fallback) */}
-            {routeData ? (
+            {routeData && (
               <>
                 <Polyline
                   positions={routeData.path}
-                  pathOptions={{ color: '#ffa726', weight: 4, opacity: 0.8 }}
+                  pathOptions={{ color: '#1677d2', weight: 10, opacity: 0.16, lineCap: 'round', lineJoin: 'round' }}
+                  interactive={false}
+                />
+                <Polyline
+                  positions={routeData.path}
+                  pathOptions={{ color: '#1677d2', weight: 5, opacity: 0.94, lineCap: 'round', lineJoin: 'round' }}
                 >
                   <Popup>
-                    <div style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: '0.8rem',
-                      color: '#333',
-                    }}>
-                      <b>BayesTrip Route</b><br/><br/>
-                      🛣️ Distance: {formatDistance(routeData.distance)}<br/>
-                      ⏱️ Travel Time: {formatDuration(routeData.duration)}
+                    <div className="route-popup">
+                      <strong>BayesTrip driving route</strong>
+                      <span>{formatDistance(routeData.distance)} · {formatDuration(routeData.duration)}</span>
                     </div>
                   </Popup>
                 </Polyline>
-                <Polyline
-                  positions={routeData.path}
-                  pathOptions={{ color: '#ffa726', weight: 12, opacity: 0.2 }}
-                />
               </>
-            ) : allPositions.length > 1 && (
-              <Polyline
-                positions={allPositions.map(p => [p.lat, p.lng])}
-                pathOptions={{
-                  color: '#ffa726',
-                  weight: 3,
-                  opacity: 0.6,
-                  dashArray: '8, 8',
-                }}
-              />
             )}
 
-            {/* Markers */}
-            {itinerary.map((stop, i) => stop.lat && stop.lng && (
-              <Marker
-                key={stop.place_id}
-                position={[stop.lat, stop.lng]}
-                icon={createPulsingIcon(
-                  selectedPlace?.place_id === stop.place_id ? '#00f0ff' : '#ffa726'
-                )}
-              >
+            {allPositions.map((stop, i) => {
+              const type = i === 0 ? 'start' : i === allPositions.length - 1 ? 'finish' : 'stop'
+              return (
+                <Marker
+                  key={stop.place_id}
+                  position={[stop.lat, stop.lng]}
+                  icon={createRouteIcon(i + 1, type, selectedPlace?.place_id === stop.place_id)}
+                  eventHandlers={{ click: () => setSelectedPlace(stop) }}
+                >
                 <Popup>
-                  <div style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: '0.8rem',
-                    color: '#333',
-                  }}>
-                    <strong>{stop.name}</strong><br />
-                    {stop.slot} · {stop.time_range}
+                  <div className="route-popup route-popup--stop">
+                    <span className={`route-popup-number route-popup-number--${type}`}>{i + 1}</span>
+                    <span className="route-popup-copy"><strong>{stop.name}</strong><span>{stop.slot} · {stop.time_range}</span></span>
                   </div>
                 </Popup>
-              </Marker>
-            ))}
+                </Marker>
+              )
+            })}
           </MapContainer>
+        </div>
+        <div className="map-footer">
+          <div className="route-legend" aria-label="Route marker legend">
+            <span><i className="legend-line" />OSRM driving route</span>
+            <span><i className="legend-marker legend-marker--start">1</i>Start</span>
+            <span><i className="legend-marker legend-marker--stop">2</i>Stop</span>
+            <span><i className="legend-marker legend-marker--finish">{allPositions.length}</i>Finish</span>
+          </div>
+          <details className="route-steps">
+            <summary>View all {allPositions.length} stops</summary>
+            <ol>
+              {allPositions.map((stop, i) => (
+                <li key={stop.place_id}>
+                  <button type="button" onClick={() => setSelectedPlace(stop)}>
+                    <span className="route-step-number">{i + 1}</span>
+                    <span><strong>{stop.name}</strong><small>{stop.slot} · {stop.time_range}</small></span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </details>
         </div>
       </div>
     </SectionTransition>
